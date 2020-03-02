@@ -1,4 +1,5 @@
 import * as React from "react";
+import styled from "styled-components";
 
 interface Props {
   // status: PersonalStatus;
@@ -54,29 +55,53 @@ export const Garde: React.FunctionComponent<Props> = props => (
         <option>bacteriologie</option>
       </select>
     </p>
-    {/* <h3>List de Nuit</h3>
-    <div>
-      <p>
-        Technicien des Jours Pairs : <input onChange={e=>{console.log(e.target)}}/>
-      </p>
-
-      <p>
-        Technicien des Jours Impairs : <input />
-      </p>
-    </div>
-
-    <h3>List de Jour</h3>
-    <div>
-      <p>
-        Technicien des Jours Pairs : <input />
-      </p>
-
-      <p>
-        Technicien des Jours Impairs : <input />
-      </p>
-    </div> */}
     <p>
       <button>Valider</button>
     </p>
+    <hr />
+    <h2>Recap</h2>
+    <Table>
+      <thead>
+        <TableRow>
+          <th>date debut </th>
+          <th>date fin </th>
+          <th>Nom </th>
+          <th>Prenom </th>
+          <th>unite </th>
+          <th>status </th>
+          <th>Jour ou Nuit </th>
+        </TableRow>
+      </thead>
+      <tbody>
+        <TableRow>
+          <td>2020-03-01</td>
+          <td>2020-03-15</td>
+          <td>Bendaoued</td>
+          <td>Hmida</td>
+          <td>Biochimie</td>
+          <td>Technicien</td>
+          <td>Jour</td>
+        </TableRow>
+      </tbody>
+    </Table>
   </div>
 );
+
+const Table = styled.table`
+  border: 1;
+`;
+
+const TableRow = styled.tr`
+  th,
+  td {
+    border: 1px solid #000;
+  }
+  th {
+    text-align: inherit;
+    width: 150px;
+  }
+
+  td {
+    width: 150px;
+  }
+`;
