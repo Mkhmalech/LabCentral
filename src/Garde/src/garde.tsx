@@ -27,7 +27,34 @@ export const Garde: React.FunctionComponent<Props> = props => (
       Annee : <input />
     </p>
     <hr />
-    <h3>List de Nuit</h3>
+    ajouter garde : <button>Technicien</button> <button> resident </button>
+    <button>secretaire</button>
+    <hr />
+    <p>
+      date de debut : <input />
+      date de fin : <input />
+    </p>
+    <p>
+      selectionner :
+      <select>
+        <option>Jour</option>
+        <option>Nuit</option>
+      </select>
+      impaire ou pair :
+      <select>
+        <option>pair</option>
+        <option>impair</option>
+      </select>
+    </p>
+    <p>
+      unite :
+      <select>
+        <option>biochimie</option>
+        <option>hematologie</option>
+        <option>bacteriologie</option>
+      </select>
+    </p>
+    {/* <h3>List de Nuit</h3>
     <div>
       <p>
         Technicien des Jours Pairs : <input onChange={e=>{console.log(e.target)}}/>
@@ -47,7 +74,7 @@ export const Garde: React.FunctionComponent<Props> = props => (
       <p>
         Technicien des Jours Impairs : <input />
       </p>
-    </div>
+    </div> */}
     <p>
       <button>Valider</button>
     </p>
