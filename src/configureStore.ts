@@ -1,3 +1,1 @@
-export const configureStore = (initialState : AppState) =>{
-  
-}
+export const configureStore = (initialState: LabCentral) => {};
