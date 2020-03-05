@@ -1,6 +1,5 @@
 import * as React from "react";
 import styled from "styled-components";
-import DatePicker from "react-datepicker";
 
 interface Props {
   // status: PersonalStatus;
