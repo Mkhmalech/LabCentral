@@ -37,8 +37,8 @@ export const Garde: React.FunctionComponent<Props> = props => {
       <button>secretaire</button>
       <hr />
       <p>
-        date de debut : <DatePicker selected={date} onChange={date => {}} />
-        date de fin : <DatePicker selected={newDate} onChange={date => {}} />
+        date de debut : <input />
+        date de fin : <input />
       </p>
       <p>
         selectionner :
