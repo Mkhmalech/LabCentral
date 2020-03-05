@@ -2,7 +2,7 @@
 interface Garde {}
 
 interface LabCentral {
-  personel: Personal;
+  personal: Personal;
   // garde: Garde;
 }
 
