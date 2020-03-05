@@ -14,7 +14,7 @@ declare type PPR = number;
 interface Personal {
   firstName: FirstName;
   lastName: LastName;
-  ppr: PPR;
-  status: Status;
-  addNewPersonal: (fn: FirstName, ln: LastName) => void;
+  ppr?: PPR;
+  status?: Status;
+  addNewPersonal?: (fn: FirstName, ln: LastName) => void;
 }

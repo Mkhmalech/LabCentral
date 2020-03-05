@@ -1,5 +1,6 @@
 import * as React from "react";
 import styled from "styled-components";
+import DatePicker from "react-datepicker";
 
 interface Props {
   // status: PersonalStatus;
@@ -7,7 +8,8 @@ interface Props {
 
 export const Garde: React.FunctionComponent<Props> = props => {
   const modal = () => <div>this is a modal</div>;
-
+  const date = new Date();
+  let newDate = date.setDate(date.getDate() + 30);
   return (
     <div>
       <h1>Garde</h1>
@@ -35,8 +37,8 @@ export const Garde: React.FunctionComponent<Props> = props => {
       <button>secretaire</button>
       <hr />
       <p>
-        date de debut : <input />
-        date de fin : <input />
+        date de debut : <DatePicker selected={date} onChange={date => {}} />
+        date de fin : <DatePicker selected={newDate} onChange={date => {}} />
       </p>
       <p>
         selectionner :
