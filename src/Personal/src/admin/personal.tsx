@@ -42,7 +42,7 @@ export const Personal: React.FunctionComponent<Props> = props => (
       </p>
       <hr />
       <h3>Historique</h3>
-      <p>
+      
         <table>
           <thead>
             <tr>
@@ -74,7 +74,7 @@ export const Personal: React.FunctionComponent<Props> = props => (
             </tr>
           </tbody>
         </table>
-      </p>
+
     </div>
   </div>
 );
