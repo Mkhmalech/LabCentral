@@ -22,13 +22,19 @@ export const SideApp = () => (
     </SidebarHeader>
     <SideList>
       <ListTitle>
-        <Nav to="./">Personelles</Nav>
+        <Nav to="./">Dashboard</Nav>
+      </ListTitle>
+      <ListTitle>
+        <Nav to="./personal">Personelles</Nav>
       </ListTitle>
       <ListTitle>
         <Nav to="./gardes">Garde</Nav>
       </ListTitle>
       <ListTitle>
         <Nav to="./tickets">Tickets</Nav>
+      </ListTitle>
+      <ListTitle>
+        <Nav to="./parameters">Parameters</Nav>
       </ListTitle>
     </SideList>
   </Sidebar>

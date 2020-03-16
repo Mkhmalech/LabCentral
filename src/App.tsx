@@ -2,7 +2,7 @@ import * as React from "react";
 import "./styles.css";
 import styled from "styled-components";
 import { Switch, Route } from "react-router";
-import { Personal } from "./Personal/src";
+import { PersonalHome } from "./labPersonal-ittyni/src";
 import { Garde } from "./Garde/src/garde";
 
 export default function App() {
@@ -12,7 +12,8 @@ export default function App() {
       <Container>
         <Switch>
           <Route path="/gardes" component={Garde} />
-          <Route path="/" component={Personal} exact />
+          <Route path="/personal" component={PersonalHome} />
+          <Route path="/" component={Garde} exact />
         </Switch>
       </Container>
     </div>

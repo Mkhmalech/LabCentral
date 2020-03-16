@@ -1,4 +1,4 @@
-/// <reference path="./Personal/personal.d.ts" />
+/// <reference types="./labPersonal-ittyni" />
 interface Garde {}
 
 interface LabCentral {

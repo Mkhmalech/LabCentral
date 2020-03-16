@@ -9,7 +9,7 @@ import { fork, all } from "redux-saga/effects";
 // import { AuthState } from '../components/authentification-redux-lib/src/types';
 
 // personal module
-import { personalReducer } from "../Personal/src/store/reducer";
+import { personalReducer } from "../labPersonal-ittyni/src/store/reducer";
 
 export const createRootReducer = (history: History) =>
   combineReducers({
