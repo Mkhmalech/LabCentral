@@ -1,6 +1,0 @@
-[submodule "src/labpersonal-ittyni"]
-	path = src/labpersonal-ittyni
-	url = git@github.com:Mkhmalech/labpersonal-ittyni.git
-[submodule "src/--force"]
-	path = src/--force
-	url = git@github.com:Mkhmalech/labpersonal-ittyni.git
