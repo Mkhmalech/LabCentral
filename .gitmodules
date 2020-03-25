@@ -1,3 +1,3 @@
-[submodule "src/labPersonal-ittyni"]
-	path = src/labPersonal-ittyni
-	url = git@github.com:Mkhmalech/labPersonal-ittyni.git
+[submodule "src/labpersonal-ittyni"]
+	path = src/labpersonal-ittyni
+	url = git@github.com:Mkhmalech/labpersonal-ittyni.git

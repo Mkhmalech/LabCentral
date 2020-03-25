@@ -2,7 +2,7 @@ import * as React from "react";
 import "./styles.css";
 import styled from "styled-components";
 import { Switch, Route } from "react-router";
-import { PersonalHome } from "./labPersonal-ittyni/src";
+import { PersonalHome } from "./labpersonal-ittyni/src";
 import { Garde } from "./Garde/src/garde";
 
 export default function App() {
