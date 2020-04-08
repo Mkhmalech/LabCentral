@@ -11,7 +11,7 @@ const initialState = window.INITIAL_REDUX_STATE;
 
 export const store = configureStore(history, initialState);
 
-console.log(store.getState())
+console.log(store.getState());
 
 const rootElement = document.getElementById("root");
-render(<Main history={history} store={store}/>, rootElement);
+render(<Main history={history} store={store} />, rootElement);
