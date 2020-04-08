@@ -7,8 +7,8 @@ import { routerMiddleware } from "connected-react-router";
 
 export const configureStore = (
   history: History,
-  initialState: LabCentral
-): Store<LabCentral> => {
+  initialState: LabCentralState
+): Store<LabCentralState> => {
   const sagaMiddleware = createSagaMiddleware();
 
   const store = createStore(

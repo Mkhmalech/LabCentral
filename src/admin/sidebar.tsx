@@ -25,7 +25,7 @@ export const SideApp = () => (
         <Nav to="./">Dashboard</Nav>
       </ListTitle>
       <ListTitle>
-        <Nav to="./personal">Personelles</Nav>
+        <Nav to="./staff">Personelles</Nav>
       </ListTitle>
       <ListTitle>
         <Nav to="./gardes">Garde</Nav>
@@ -54,6 +54,7 @@ const Sidebar = styled.div`
 
   transition: width 0.3s ease-in-out;
 `;
+
 const SidebarHeader = styled.header`
   display: flex;
   flex-direction: row;
@@ -72,16 +73,19 @@ const UserInfo = styled.div`
   flex-direction: column;
   font-size: 12px;
 `;
+
 const ListTitle = styled.h2`
   color: white;
   border-bottom: 1px solid gray;
 `;
+
 const SideList = styled.ul`
   list-style-type: none;
   display: flex;
   flex-direction: column;
   padding: 5px;
 `;
+
 const Item = styled.li`
   flex: 1 1 100%;
   height: 50px;
