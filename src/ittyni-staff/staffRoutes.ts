@@ -1,5 +1,6 @@
 import { StaffListALL } from "./admin/staffListAll";
 import { StaffAddEmployer } from './admin/staffAddEmployer';
+import { StaffUpdateEmployer } from './admin/staffUpdateEmployer';
 
 export const staffRoutes = {
     StaffListAll : {
@@ -15,5 +16,11 @@ export const staffRoutes = {
             component : StaffAddEmployer
         },
         web : {}
+    },
+    StaffUpdateEmployer : {
+        admin : {
+            path : '/admin/:user/staff/update',
+            component : StaffUpdateEmployer
+        }
     }
 }

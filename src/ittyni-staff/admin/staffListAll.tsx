@@ -21,12 +21,14 @@ export const StaffListALL : React.FC<any> = () =>{
                 </Tr>
             </thead>
             <tbody>
+                
                 <Tr>
-                    <Td>khmalech</Td>
+                    <Td><Link to={`./update`}>khmalech</Link></Td>
                     <Td>Mohammed</Td>
                     <Td>1322222</Td>
                     <Td>Biochimie</Td>
                 </Tr>
+                
             </tbody>
         </Table>
         </>

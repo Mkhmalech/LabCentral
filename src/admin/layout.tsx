@@ -31,6 +31,9 @@ export const AdminLayout = () => {
           <Route path={staffRoutes.StaffAddEmployer.admin.path} 
                  component={staffRoutes.StaffAddEmployer.admin.component} 
           />
+          <Route path={staffRoutes.StaffUpdateEmployer.admin.path} 
+                 component={staffRoutes.StaffUpdateEmployer.admin.component} 
+          />
 
         </Wrapper.Body>
 
