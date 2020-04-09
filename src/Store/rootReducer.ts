@@ -10,11 +10,12 @@ import { fork, all } from "redux-saga/effects";
 
 // personal module
 // import { personalReducer } from "../labpersonal-ittyni/src/store/reducer";
+import { staffReducer } from '../ittyni-staff/src/store/reducers';
 
 export const createRootReducer = (history: History) =>
   combineReducers({
     // auth   : AuthReducer,
-    staff: state => (state = "staff") /* reducer khfifff */,
+    staff: staffReducer /* reducer khfifff */,
     router: connectRouter(history) //hada makaynch fe state
   });
 // mazian daba

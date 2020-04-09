@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as Wrapper from "../commons/wrappers";
 import {SideApp} from './sidebar'
-import { staffRoutes } from '../ittyni-staff/staffRoutes';
+import { staffRoutes } from '../ittyni-staff/src/staffRoutes';
 import { Route, Redirect } from "react-router-dom";
 
 const username = 'mohammed';

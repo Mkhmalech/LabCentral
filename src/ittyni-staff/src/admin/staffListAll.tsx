@@ -1,8 +1,15 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Staff } from '../controller/staff';
 
 export const StaffListALL : React.FC<any> = () =>{
+
+    const staff = new Staff();
+
+    React.useLayoutEffect(()=>{
+        staff.addNewEmployers({firstName : "mohammed", lastName : "khmalech", departement : "biochimie"})
+    })
 
     return(
         <>
