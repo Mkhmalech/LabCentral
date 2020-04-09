@@ -25,7 +25,7 @@ export const SideApp = () => (
         <Nav to="./">Dashboard</Nav>
       </ListTitle>
       <ListTitle>
-        <Nav to="./staff">Personelles</Nav>
+        <Nav to="/admin/mohammed/staff">Personelles</Nav>
       </ListTitle>
       <ListTitle>
         <Nav to="./gardes">Garde</Nav>

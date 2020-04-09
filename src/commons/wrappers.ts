@@ -11,6 +11,8 @@ export const Container = styled("div")`
 export const Header = styled("div")`
   background : rgb(0, 0, 0);
   color : rgb(250,250,250);
+  min-height : 35px; 
+  border-bottom : 1px solid black;
 `;
 
 // main wrapper
@@ -18,7 +20,7 @@ export const BodyContainer = styled("main")`
   display : flex;
   flex-direction : row;
   position : relative;
-  min-height : ${()=>window.innerHeight - 25 - 25}px;
+  min-height : ${()=>window.innerHeight - 35 - 25}px;
 `;
 // sidebar wrapper
 export const Sidebar = styled("div")`
