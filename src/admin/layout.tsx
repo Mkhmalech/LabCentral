@@ -2,7 +2,10 @@ import * as React from "react";
 import * as Wrapper from "../commons/wrappers";
 import {SideApp} from './sidebar'
 import { staffRoutes } from '../ittyni-staff/staffRoutes';
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
+
+const username = 'mohammed';
+
 export const AdminLayout = () => {
   return (
     <Wrapper.Container>
@@ -21,9 +24,14 @@ export const AdminLayout = () => {
 
         {/* body wrapper */}
         <Wrapper.Body>
+          {/* staff Component */}
           <Route path={staffRoutes.StaffListAll.admin.path} 
                  component={staffRoutes.StaffListAll.admin.component} 
           />
+          <Route path={staffRoutes.StaffAddEmployer.admin.path} 
+                 component={staffRoutes.StaffAddEmployer.admin.component} 
+          />
+
         </Wrapper.Body>
 
         {/* end of body container  */}

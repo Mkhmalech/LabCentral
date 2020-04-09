@@ -30,7 +30,7 @@ export const Sidebar = styled("div")`
 // body wrapper
 export const Body = styled("div")`
   margin-left: 300px;
-  
+  width : 70%;
   @media (max-width: 700px) {
     margin-left: 0px;
   }

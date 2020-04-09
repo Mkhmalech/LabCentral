@@ -2,8 +2,10 @@ import * as React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const date = new Date();
-export const SideApp = () => (
+
+export const SideApp = () => {
+  const date = new Date();
+  return (
   <Sidebar>
     <SidebarHeader>
       <UserAvatar>
@@ -22,23 +24,23 @@ export const SideApp = () => (
     </SidebarHeader>
     <SideList>
       <ListTitle>
-        <Nav to="./">Dashboard</Nav>
+        <Nav to="/admin/mohammed/Dashboard">Dashboard</Nav>
       </ListTitle>
       <ListTitle>
-        <Nav to="/admin/mohammed/staff">Personelles</Nav>
+        <Nav to="/admin/mohammed/staff/list-all-employers">Personelles</Nav>
       </ListTitle>
       <ListTitle>
-        <Nav to="./gardes">Garde</Nav>
+        <Nav to="/admin/mohammed/gardes/">Garde</Nav>
       </ListTitle>
       <ListTitle>
-        <Nav to="./tickets">Tickets</Nav>
+        <Nav to="/admin/mohammed/tickets/">Tickets</Nav>
       </ListTitle>
       <ListTitle>
-        <Nav to="./parameters">Parameters</Nav>
+        <Nav to="/admin/mohammed/parameters/">Parameters</Nav>
       </ListTitle>
     </SideList>
   </Sidebar>
-);
+)};
 
 const Sidebar = styled.div`
   width: 250px;

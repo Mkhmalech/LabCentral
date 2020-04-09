@@ -1,15 +1,23 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const StaffListALL : React.FC<any> = () =>{
 
     return(
+        <>
+        <h1>List des Personelles de laboratoire CHU</h1>
+        <Link to={'./add-new-employer'} >Ajouter Nouveau </Link>
+
+        <hr/>
+        
         <Table>
             <thead>
                 <Tr>
                     <Th>nom</Th>
                     <Th>Prenom</Th>
                     <Th>PPR</Th>
+                    <Th>unite</Th>
                 </Tr>
             </thead>
             <tbody>
@@ -17,16 +25,18 @@ export const StaffListALL : React.FC<any> = () =>{
                     <Td>khmalech</Td>
                     <Td>Mohammed</Td>
                     <Td>1322222</Td>
+                    <Td>Biochimie</Td>
                 </Tr>
             </tbody>
         </Table>
+        </>
     )
 }
 
 const Table = styled('table')`
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     border-spacing: 0;
-    min-width: 612px;
+    min-width: 100%;
     margin-top: 50px;
 `
 

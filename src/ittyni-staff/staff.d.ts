@@ -1,4 +1,13 @@
+
+type EmployerDepartement  = string
+type EmployerPPR = number
+
+interface Employers extends Person{
+  departement : EmployerDepartement
+  PPR ?  : EmployerPPR 
+}
+
 interface LabStaffState {
-  staff ?: string;
+  staff ?: [Employers];
 }
 // daba ghadi namchiw el partie s3iba fin initializiw a state dyalna

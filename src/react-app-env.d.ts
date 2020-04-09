@@ -1,6 +1,18 @@
 /// <reference types="react-scripts" />
 /// <reference types="./ittyni-staff" />
 
+// Globals
+type PersonCivility = string;
+type PersonFirstName = string;
+type PersonLastName = string;
+type PersonEmail = string;
+interface Person {
+  civility?: PersonCivility;
+  firstName: PersonFirstName;
+  lastName: PersonLastName;
+  email?: PersonEmail;
+}
+
 interface Garde {}
 
 interface LabCentralState {
