@@ -32,7 +32,8 @@ export const Body = styled("div")`
   margin-left: 300px;
   width : 70%;
   @media (max-width: 700px) {
-    margin-left: 0px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
