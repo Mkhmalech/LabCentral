@@ -1,5 +1,6 @@
 import { Dispatch } from "redux";
 import { store } from '../../../index';
+import {ADD_EMPLOYER} from '../store/actions'
 
 export class Staff {
 
@@ -14,7 +15,7 @@ export class Staff {
      */
     addNewEmployers = (employer : Employer) =>{
         this.dispatch({
-            type : 'staff'
+            type : ADD_EMPLOYER
         })
     }
 }
