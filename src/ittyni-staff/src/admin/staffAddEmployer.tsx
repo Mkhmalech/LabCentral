@@ -28,7 +28,6 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
   const formData : FormFieldProps[]= [
     // @Todo add civilite dropdown Mr, Mme
     {label : "Nom", placeholder : "nom", changeHandler : add_employerLName},
-    {label : "Nom", placeholder : "nom", changeHandler : add_employerLName},
     {label : "Prenom", placeholder : "Prenom", changeHandler : add_employerFName},
     {label : "PPR", placeholder : "ppr", changeHandler : add_employerPPR, type : "number"}
   ]

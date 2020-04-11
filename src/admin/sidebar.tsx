@@ -36,7 +36,7 @@ export const SideApp = () => {
         <Nav to="/admin/mohammed/tickets/">Tickets</Nav>
       </ListTitle>
       <ListTitle>
-        <Nav to="/admin/mohammed/parameters/">Parameters</Nav>
+        <Nav to="/admin/mohammed/settings/">Parameters</Nav>
       </ListTitle>
     </SideList>
   </Sidebar>

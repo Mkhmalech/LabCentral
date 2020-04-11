@@ -2,6 +2,8 @@ import * as React from "react";
 import * as Wrapper from "../commons/wrappers";
 import {SideApp} from './sidebar'
 import { staffRoutes } from '../ittyni-staff/src/staffRoutes';
+import { settingRoutes } from '../ittyni-labsetting/src/settingRoutes';
+
 import { Route, Redirect } from "react-router-dom";
 
 const username = 'mohammed';
@@ -34,7 +36,10 @@ export const AdminLayout = () => {
           <Route path={staffRoutes.StaffUpdateEmployer.admin.path} 
                  component={staffRoutes.StaffUpdateEmployer.admin.component} 
           />
-
+          {/* setting Component */}
+          <Route path={settingRoutes.admin.laboSetting.path} 
+                 component={settingRoutes.admin.laboSetting.component}
+          />
         </Wrapper.Body>
 
         {/* end of body container  */}
