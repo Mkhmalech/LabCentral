@@ -3,7 +3,7 @@ import "./styles.css";
 import styled from "styled-components";
 import { Switch, Route } from "react-router";
 // import { PersonalHome } from "./labpersonal-ittyni/src";
-import { Garde } from "../Garde/src/garde";
+import { Garde } from "../ittyni-garde/src/garde";
 
 export default function App() {
   // const date = new Date().toISOString();

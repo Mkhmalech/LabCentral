@@ -26,6 +26,8 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
 
   // form data 
   const formData : FormFieldProps[]= [
+    // @Todo add civilite dropdown Mr, Mme
+    {label : "Nom", placeholder : "nom", changeHandler : add_employerLName},
     {label : "Nom", placeholder : "nom", changeHandler : add_employerLName},
     {label : "Prenom", placeholder : "Prenom", changeHandler : add_employerFName},
     {label : "PPR", placeholder : "ppr", changeHandler : add_employerPPR, type : "number"}
@@ -41,7 +43,13 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
   
 
   const createEmployer = () => {
-
+    console.log([
+      employerFName,
+      employerLName,
+      employerCivility,
+      employerDepartement, /* not working add default , changed value and fix it */
+      employerPPR
+    ])
   }
 
   const addNewDepartement = (event: React.MouseEvent) => {
