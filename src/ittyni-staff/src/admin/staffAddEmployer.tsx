@@ -16,7 +16,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
 
   const [employerFName, add_employerFName] = React.useState<PersonFirstName>()
   const [employerLName, add_employerLName] = React.useState<PersonLastName>()
-  const [employerCivility, add_employerCivility] = React.useState<PersonCivility>()
+  const [employerCivility, add_employerCivility] = React.useState<PersonCivility>() 
   const [employerDepartement, add_employerDepartement] = React.useState<EmployerDepartement>()
   const [employerPPR, add_employerPPR] = React.useState<EmployerPPR>()
 
@@ -83,7 +83,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
                 <label>Unite</label>
                 <div className="test">
                   <div className="select">
-                    <select name="slct" id="slct">
+                    <select name="slct" id="slct" onChange={e=>add_employerDepartement(e.target.value)}>
                       {departements.map(dep => <option>{dep}</option>)}
                     </select>
                   </div>
@@ -104,7 +104,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
               }
             </div>
           </form>
-          <input className="button" value="Ajouter" onClick={createEmployer} />
+          <input className="button" type="submit" value="Ajouter" onClick={createEmployer} />
         </div>
       </div>
       <hr />
