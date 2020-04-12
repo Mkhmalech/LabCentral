@@ -30,10 +30,10 @@ export const SideApp = () => {
         <Nav to="/admin/mohammed/staff/list-all-employers">Personelles</Nav>
       </ListTitle>
       <ListTitle>
-        <Nav to="/admin/mohammed/gardes/">Garde</Nav>
+        <Nav to="/admin/mohammed/gardes/list-all">Garde</Nav>
       </ListTitle>
       <ListTitle>
-        <Nav to="/admin/mohammed/tickets/">Tickets</Nav>
+        <Nav to="/admin/mohammed/tickets/list-all">Tickets</Nav>
       </ListTitle>
       <ListTitle>
         <Nav to="/admin/mohammed/settings/">Parameters</Nav>

@@ -5,6 +5,8 @@ import { staffRoutes } from '../ittyni-staff/src/staffRoutes';
 import { settingRoutes } from '../ittyni-labsetting/src/settingRoutes';
 
 import { Route, Redirect } from "react-router-dom";
+import { gardeRoutes } from '../ittyni-garde/src/gardeRoutes';
+import { ticketsRoutes } from '../ittyni-tickets/src/ticketsRoutes';
 
 const username = 'mohammed';
 
@@ -39,6 +41,17 @@ export const AdminLayout = () => {
           {/* setting Component */}
           <Route path={settingRoutes.admin.laboSetting.path} 
                  component={settingRoutes.admin.laboSetting.component}
+          />
+          {/* garde routes */}
+          <Route path={gardeRoutes.admin.GardeViewAll.path} 
+                 component={gardeRoutes.admin.GardeViewAll.component} 
+          />
+          <Route path={gardeRoutes.admin.GardeCreateNew.path} 
+                 component={gardeRoutes.admin.GardeCreateNew.component} 
+          />
+          {/*  tickets routes */}
+          <Route path={ticketsRoutes.admin.TicketsViewAll.path}
+                 component={ticketsRoutes.admin.TicketsViewAll.component}
           />
         </Wrapper.Body>
 

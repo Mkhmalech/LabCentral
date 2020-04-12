@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { Table, Tr, Th, Td } from '../common/listStyle'
+import { Link } from 'react-router-dom';
 
-export const Setting: React.FC<any> = () => {
+export const GardeViewAll: React.FC<any> = () => {
 
     const Parameters = [
-        {title : "Ajouter Departement", headers: ["departement"], data : ["Biochimie"] },
-        {title : "Ajouter Jours Ferie", headers: ["Jours Ferie"], data : ["Marche Verte"] },
-        {title : "Ajouter Conge", headers: ["Conge", "duree", "unite"], data : ["Maternite", "3", "Jours"] },
-        {title : "Ajouter Automates", headers: ["Marque", "refrerence", "version"], data : ["archetecte", "8000-i", "2013"] },
+        {title : "list de garde du mois 05-2020", headers: ["Nom", "Prenom", "unite"], data : ["khamlech", "Mohammed", "Biochimie"] }
     ]
 
     return (
@@ -15,7 +13,8 @@ export const Setting: React.FC<any> = () => {
             {Parameters.map((parameter:any) =>(
                 <div key={parameter.title}>
                 <h1>{parameter.title}</h1>
-                <hr />
+                <Link to="/admin/mohammed/gardes/create-new" >Creer Nouveau List de Gardes</Link>
+                <hr/>
                 <p>
                     <Table>
                         <thead>
@@ -27,6 +26,7 @@ export const Setting: React.FC<any> = () => {
                     </Table>
                 </p>
                 <hr />
+                
                 </div>
             ))}
         </div>

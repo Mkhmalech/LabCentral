@@ -1,13 +1,10 @@
 import * as React from 'react';
 import { Table, Tr, Th, Td } from '../common/listStyle'
 
-export const Setting: React.FC<any> = () => {
+export const TicketsViewAll: React.FC<any> = () => {
 
     const Parameters = [
-        {title : "Ajouter Departement", headers: ["departement"], data : ["Biochimie"] },
-        {title : "Ajouter Jours Ferie", headers: ["Jours Ferie"], data : ["Marche Verte"] },
-        {title : "Ajouter Conge", headers: ["Conge", "duree", "unite"], data : ["Maternite", "3", "Jours"] },
-        {title : "Ajouter Automates", headers: ["Marque", "refrerence", "version"], data : ["archetecte", "8000-i", "2013"] },
+        {title : "Ajouter Departement", headers: ["departement"], data : ["Biochimie"] }
     ]
 
     return (
