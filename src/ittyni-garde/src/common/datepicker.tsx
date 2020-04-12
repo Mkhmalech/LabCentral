@@ -42,7 +42,6 @@ export class Calendar extends React.Component {
     } else if (date.isAfter(startDate, 'day')) {
       endDate = moment(date);
     }
-    console.log(date.isSame(startDate, 'day'));
     this.setState({
       startDate,
       endDate
@@ -115,7 +114,13 @@ const Days = ({date, startDate, endDate, onClick} : any) => {
     previousMonth.date(previousMonthDays - i + 2);
 
     days.push(
-      <Day key={moment(previousMonth).format('DD MM YYYY')} onClick={(date:any) => onClick(date)} currentDate={date} date={moment(previousMonth)} startDate={startDate} endDate={endDate} />
+      <Day key={moment(previousMonth).format('DD MM YYYY')} 
+           onClick={(date:any) => onClick(date)} 
+           currentDate={date} 
+           date={moment(previousMonth)} 
+           startDate={startDate} 
+           endDate={endDate} 
+      />
     );
   }
 
@@ -130,6 +135,7 @@ const Days = ({date, startDate, endDate, onClick} : any) => {
   const daysCount = days.length;
   for (let i = 1; i <= (42 - daysCount); i++) {
     nextsMonth.date(i);
+    console.log(date.date())
     days.push(
       <Day key={moment(nextsMonth).format('DD MM YYYY')} onClick={(date:any) => onClick(date)} currentDate={date} date={moment(nextsMonth)} startDate={startDate} endDate={endDate} />
     );
@@ -235,7 +241,7 @@ const CalendarStyled = styled('div')`
         border-radius: 0;
       }
 
-      .start, &.between, &.end {
+      &.start, &.between, &.end {
         background-color: #b670f4;
         color: #fff;
       }
