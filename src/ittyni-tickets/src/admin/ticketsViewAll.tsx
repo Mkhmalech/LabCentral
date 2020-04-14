@@ -4,7 +4,10 @@ import { Table, Tr, Th, Td } from '../common/listStyle'
 export const TicketsViewAll: React.FC<any> = () => {
 
     const Parameters = [
-        {title : "Ajouter Departement", headers: ["departement"], data : ["Biochimie"] }
+        { title : "Lister tous les ", 
+          headers: ["nom du ticket", "status", "creer par", "gerer par"], 
+          data : ["probleme des ISE", "en Cours", "admin", "societe SomaLab"] 
+        }
     ]
 
     return (
