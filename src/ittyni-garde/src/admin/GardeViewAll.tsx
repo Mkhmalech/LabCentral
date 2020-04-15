@@ -3,38 +3,40 @@ import { Table, Tr, Th, Td } from '../common/listStyle'
 import { Link } from 'react-router-dom';
 import { CreateNew } from './GardeCreateNew';
 
-export const GardeViewAll: React.FC<any> = () => {
+export const GardeViewAll = ({ shiftDate }: any) => {
 
     const [isOpen, openCloseModal] = React.useState(false)
 
     const Parameters = [
-        {   title : "list de garde du mois 05-2020", 
-            headers: ["Nom", "Prenom", "unite", "Les Jours de Garde", "J/N", "E/S"], 
-            data : ["khamlech", "Mohammed", "Biochimie", "1 - 3 - 5 - 7", "J", <div><Delete /> - <Modify /></div>] }
+        {
+            title: "list de garde du mois 05-2020",
+            headers: ["Nom", "Prenom", "unite", "Les Jours de Garde", "J/N", "E/S"],
+            data: ["khamlech", "Mohammed", "Biochimie", "1 - 3 - 5 - 7", "J", <div><Delete /> - <Modify /></div>]
+        }
     ]
 
     return (
         <div>
-            {Parameters.map((parameter:any) =>(
+            {Parameters.map((parameter: any) => (
                 <div key={parameter.title}>
-                <h1>{parameter.title}</h1>
-                <a onClick={()=>openCloseModal(!isOpen)}>Creer Nouveau List de Gardes</a>
-                <hr/>
-                <p>
+                    <h1>{parameter.title}</h1>
+                    <a onClick={(e) => openCloseModal(!isOpen)}>Creer Nouveau List de Gardes</a>
+                    <hr />
+
                     <Table>
                         <thead>
-                        <Tr >
-                            {parameter.headers.map((header:any) =><Th key={header}>{header}</Th>)}
-                        </Tr>
+                            <Tr >
+                                {parameter.headers.map((header: any) => <Th key={header}>{header}</Th>)}
+                            </Tr>
                         </thead>
-                        <tbody><Tr>{parameter.data.map((body:any)=><Td>{body}</Td>)}</Tr></tbody>
+                        <tbody><Tr>{parameter.data.map((body: any) => <Td>{body}</Td>)}</Tr></tbody>
                     </Table>
-                </p>
-                <hr />
-                
+
+                    <hr />
+
                 </div>
             ))}
-            {isOpen && <CreateNew close={()=>openCloseModal(!isOpen)}/>}
+            {isOpen && <CreateNew close={() => openCloseModal(!isOpen)} shiftDate={shiftDate} />}
         </div>
     )
 }

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "this is a module component for ittyni.com",
   "main": "dist/index.js",
-  "types": "src/shift.d.ts",
+  "types": "shift.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

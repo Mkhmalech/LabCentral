@@ -1,16 +1,27 @@
 import * as React from 'react';
 import { Calendar } from '../common/datepicker';
 import { ModalContainer, ModalHeader, ModalHeaderTitle, ModalLayout, ModalClose, ModalContent, ModalFooter } from '../common/modal';
-import styled from 'styled-components';
+import { Shift } from '../controller/shift';
+import { useSelector } from 'react-redux';
 
-export const CreateNew = ({close}: any) => {
+const shiftClass = new Shift();
 
-    const [month, updateMonth] = React.useState<any>();
+export const CreateNew : React.FC<any> = ({close}) => {
 
+    /**
+     * user search a @constant{name : fetched from server} 
+     * after enter @constant{day : instante state} or @constant{night : instant state}
+     * @constant{pair : instante state} or @constant{impair : instante state} then 
+     * @constant{startDate and endDate : instante state}
+     * and click ok to dispatch all data to server 
+     * that will update garde table
+     */
+
+    const [startDate, updateStartDate] = React.useState<any>();
+    const [endDate, updateEndDate] = React.useState<any>();
     const Parameters = [
         { title: "list de garde du mois 05-2020", headers: ["Nom", "Prenom", "unite"], data: ["khamlech", "Mohammed", "Biochimie"] }
     ]
-    console.log(month)
     return (
         <ModalLayout>
             <ModalContainer>
@@ -29,16 +40,19 @@ export const CreateNew = ({close}: any) => {
                             <option>Jours</option>
                             <option>Nuits</option>
                         </select>
-                        <select style={{width : "100px"}}>
+                        <select style={{width : "100px"}} >
                             <option>pair</option>
                             <option>Impair</option>
                         </select>
+                        <span>{startDate}</span>
+                        <span>{endDate}</span>
                     </p>
-                    <p>
-                        <Calendar getMonth={updateMonth}/>
-                    </p>
+                    <div>
+                       de : <input type="date" onChange={(e: any)=>updateStartDate(e.target.value)}/> 
+                       a : <input type="date" onChange={(e: any)=>updateEndDate(e.target.value)}/>
+                    </div>
                 </ModalContent>
-                <ModalFooter><button>valider</button></ModalFooter>
+                <ModalFooter><button onClick={e=>shiftClass.getShiftDate('Impair')}>valider</button></ModalFooter>
             </ModalContainer>
 
         </ModalLayout>

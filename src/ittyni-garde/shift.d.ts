@@ -10,6 +10,7 @@ interface AllMonthsShift {
 }
 
 interface LaboShiftState {
+    shiftDate ? : any
     nextMonth? : MonthShift[]
     allMonths? : AllMonthsShift[]
 }

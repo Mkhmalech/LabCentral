@@ -24,9 +24,6 @@ export class Calendar extends React.Component<any> {
     const {date} : any = this.state;
 
     date.month(month);
-
-    this.props.getMonth(date.month())
-
     this.setState(
       date
     );
@@ -52,24 +49,25 @@ export class Calendar extends React.Component<any> {
 
   render() {
     const {date, startDate, endDate} : any = this.state;
-
+    
     return (
       <CalendarStyled>
-        <Heading date={date} changeMonth={(month : any) => this.changeMonth(month)} resetDate={() => this.resetDate()} />
+        <Heading date={date} changeMonth={(month : any) => this.changeMonth(month)} resetDate={() => this.resetDate()} dispatchDate={this.props.dispatchDate}/>
 
-        <Days onClick={(date : any) => this.changeDate(date)} date={date} startDate={startDate} endDate={endDate} />
+        <Days onClick={(date : any) => {this.changeDate(date)}} date={date} startDate={startDate} endDate={endDate} />
       </CalendarStyled>
     );
   }
 }
 
-const Heading = ({ date,  changeMonth, resetDate }: any) => (
+const Heading = ({ date,  changeMonth, resetDate, dispatchDate }: any) => {
+  return(
     <div className="nav">
         <a onClick={() => changeMonth(date.month() - 1)}>&#8249;</a>
         <h1 onClick={() => resetDate()}>{date.format('MMMM')} <small>{date.format('YYYY')}</small></h1>
         <a onClick={() => changeMonth(date.month() + 1)}>&#8250;</a>
     </div>
-);
+)};
 
 const Day = ({currentDate, date, startDate, endDate, onClick} : any) => {
   let className = [];

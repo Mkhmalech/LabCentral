@@ -7,10 +7,18 @@ import { settingRoutes } from '../ittyni-labsetting/src/settingRoutes';
 import { Route, Redirect } from "react-router-dom";
 import { gardeRoutes } from '../ittyni-garde/src/gardeRoutes';
 import { ticketsRoutes } from '../ittyni-tickets/src/ticketsRoutes';
+import { connect, useSelector } from "react-redux";
 
 const username = 'mohammed';
 
-export const AdminLayout = () => {
+interface LayoutInterface extends 
+LaboShiftState
+{}
+
+export const AdminLayout : React.FC<LayoutInterface> = () => {
+
+  const {garde} = useSelector((state : LabCentralState) => state)
+  console.log(garde)
   return (
     <Wrapper.Container>
       {/**
@@ -44,7 +52,7 @@ export const AdminLayout = () => {
           />
           {/* garde routes */}
           <Route path={gardeRoutes.admin.GardeViewAll.path} 
-                 component={gardeRoutes.admin.GardeViewAll.component} 
+                 render={()=><gardeRoutes.admin.GardeViewAll.component/>} 
           />
           <Route path={gardeRoutes.admin.GardeCreateNew.path} 
                  component={gardeRoutes.admin.GardeCreateNew.component} 
