@@ -128,11 +128,15 @@ const Days = ({date, startDate, endDate, onClick} : any) => {
     thisDate.date(i);
 
     days.push(
-      <Day key={moment(thisDate).format('DD MM YYYY')} onClick={(date:any) => onClick(date)} currentDate={date} date={moment(thisDate)} startDate={startDate} endDate={endDate} />
+      <Day key={moment(thisDate).format('DD MM YYYY')} 
+           onClick={(date:any) => onClick(date)} 
+           currentDate={date} date={moment(thisDate)} 
+           startDate={startDate} endDate={endDate} />
     );
   }
 
   const daysCount = days.length;
+
   for (let i = 1; i <= (42 - daysCount); i++) {
     nextsMonth.date(i);
     console.log(date.date())
@@ -150,12 +154,12 @@ const Days = ({date, startDate, endDate, onClick} : any) => {
 };
 
 const CalendarStyled = styled('div')`
-  position: absolute;
+  position: inherit;
   top: 50%;
   left: 50%;
-  margin-top: -225px;
-  margin-left: -195px;
-  width: 360px;
+  margin-top: 50px;
+  margin-left: 0px;
+/*   width: 360px; */
   padding: 15px;
   box-shadow: 1px 1px 20px 0 rgba(0, 0, 0, 0.4);
   border-radius: 12px;
@@ -219,7 +223,7 @@ const CalendarStyled = styled('div')`
       position: relative;
       font-size: 16px;
 
-      .label {
+      &.label {
         text-transform: uppercase;
         font-weight: 700;
         color: rgba(0, 0, 0, 0.3);
@@ -227,17 +231,17 @@ const CalendarStyled = styled('div')`
         cursor: initial;
       }
 
-      .active {
+      &.active {
         font-weight: 700;
         background-color: transparentize($primary, 0.95);
         border-radius: $radius;
       }
 
-      .muted {
+      &.muted {
         color: rgba(0, 0, 0, 0.3);
       }
 
-      .between {
+      &.between {
         border-radius: 0;
       }
 
@@ -246,19 +250,19 @@ const CalendarStyled = styled('div')`
         color: #fff;
       }
 
-      .start {
+      &.start {
         border-radius: $radius 0 0 $radius;
       }
 
-      .end {
+      &.end {
         border-radius: 0 $radius $radius 0;
       }
 
-      .start.end {
+      &.start.end {
         border-radius: $radius;
       }
 
-      .between:nth-child(7n):after, &.start:nth-child(7n):after {
+      &.between:nth-child(7n):after, &.start:nth-child(7n):after {
         content: "";
         position: absolute;
         top: 0;
@@ -268,7 +272,7 @@ const CalendarStyled = styled('div')`
         width: 20px;
       }
 
-      .between:nth-child(7n + 1):after, &.end:nth-child(7n + 1):after {
+      &.between:nth-child(7n + 1):after, &.end:nth-child(7n + 1):after {
         content: "";
         position: absolute;
         top: 0;
@@ -278,7 +282,7 @@ const CalendarStyled = styled('div')`
         width: 20px;
       }
 
-      .start.end:after {
+      &.start.end:after {
         display: none;
       }
     }

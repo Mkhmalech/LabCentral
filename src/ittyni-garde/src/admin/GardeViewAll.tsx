@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { Table, Tr, Th, Td } from '../common/listStyle'
 import { Link } from 'react-router-dom';
+import { CreateNew } from './GardeCreateNew';
 
 export const GardeViewAll: React.FC<any> = () => {
+
+    const [isOpen, openCloseModal] = React.useState(false)
 
     const Parameters = [
         {title : "list de garde du mois 05-2020", headers: ["Nom", "Prenom", "unite"], data : ["khamlech", "Mohammed", "Biochimie"] }
@@ -13,7 +16,7 @@ export const GardeViewAll: React.FC<any> = () => {
             {Parameters.map((parameter:any) =>(
                 <div key={parameter.title}>
                 <h1>{parameter.title}</h1>
-                <Link to="/admin/mohammed/gardes/create-new" >Creer Nouveau List de Gardes</Link>
+                <a onClick={()=>openCloseModal(!isOpen)}>Creer Nouveau List de Gardes</a>
                 <hr/>
                 <p>
                     <Table>
@@ -29,6 +32,7 @@ export const GardeViewAll: React.FC<any> = () => {
                 
                 </div>
             ))}
+            {isOpen && <CreateNew close={()=>openCloseModal(!isOpen)}/>}
         </div>
     )
 }
