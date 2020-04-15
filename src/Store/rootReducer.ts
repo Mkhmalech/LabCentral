@@ -15,6 +15,7 @@ import { staffReducer } from '../ittyni-staff/src/store/reducers';
 export const createRootReducer = (history: History) =>
   combineReducers({
     // auth   : AuthReducer,
+    garde : (state : any)=>({...state}),
     staff: staffReducer /* reducer khfifff */,
     router: connectRouter(history) //hada makaynch fe state
   });

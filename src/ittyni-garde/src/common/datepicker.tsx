@@ -3,7 +3,7 @@ import moment from 'moment';
 import styled from 'styled-components';
 
 
-export class Calendar extends React.Component {
+export class Calendar extends React.Component<any> {
   constructor(props:any) {
     super(props);
 
@@ -24,6 +24,8 @@ export class Calendar extends React.Component {
     const {date} : any = this.state;
 
     date.month(month);
+
+    this.props.getMonth(date.month())
 
     this.setState(
       date
@@ -139,7 +141,6 @@ const Days = ({date, startDate, endDate, onClick} : any) => {
 
   for (let i = 1; i <= (42 - daysCount); i++) {
     nextsMonth.date(i);
-    console.log(date.date())
     days.push(
       <Day key={moment(nextsMonth).format('DD MM YYYY')} onClick={(date:any) => onClick(date)} currentDate={date} date={moment(nextsMonth)} startDate={startDate} endDate={endDate} />
     );
