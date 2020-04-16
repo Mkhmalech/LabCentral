@@ -8,28 +8,31 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
   const [departement, setDepartement] = React.useState('')
 
   const [departements, addDepartement] = React.useState([
+    "-",
     "Biochimie",
     "Hematologie",
     "Bacteriologie",
     "Serologie",
   ]);
 
+  // add employer parameters
   const [employerFName, add_employerFName] = React.useState<PersonFirstName>()
   const [employerLName, add_employerLName] = React.useState<PersonLastName>()
-  const [employerCivility, add_employerCivility] = React.useState<PersonCivility>() 
+  const [employerCivility, add_employerCivility] = React.useState<PersonCivility>()
   const [employerDepartement, add_employerDepartement] = React.useState<EmployerDepartement>()
   const [employerPPR, add_employerPPR] = React.useState<EmployerPPR>()
 
+  // hide & show departement
   const [hidden, setHidden] = React.useState(false);
 
   const [employer, addEmployer] = React.useState<Employer>()
 
   // form data 
-  const formData : FormFieldProps[]= [
-    // @Todo add civilite dropdown Mr, Mme
-    {label : "Nom", placeholder : "nom", changeHandler : add_employerLName},
-    {label : "Prenom", placeholder : "Prenom", changeHandler : add_employerFName},
-    {label : "PPR", placeholder : "ppr", changeHandler : add_employerPPR, type : "number"}
+  const formData: FormFieldProps[] = [
+    // @TODO add civilite dropdown Mr, Mme
+    { label: "Nom", placeholder: "nom", changeHandler: add_employerLName },
+    { label: "Prenom", placeholder: "Prenom", changeHandler: add_employerFName },
+    { label: "PPR", placeholder: "ppr", changeHandler: add_employerPPR, type: "number" }
   ]
 
 
@@ -39,7 +42,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
     setHidden(!hidden)
   }
 
-  
+
 
   const createEmployer = () => {
     console.log([
@@ -81,7 +84,8 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
           <form>
 
             <div className="row clearfix">
-              {formData.map((field : FormFieldProps) =>
+              <FormFieldSelect listToChose={["-","Mr", "Mme"]} onChange={(e)=>add_employerCivility(e.target.value)} />
+              {formData.map((field: FormFieldProps) =>
                 <FormField {...field} />
               )}
             </div>
@@ -89,11 +93,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
               <div className="col_half">
                 <label>Unite</label>
                 <div className="test">
-                  <div className="select">
-                    <select name="slct" id="slct" onChange={e=>add_employerDepartement(e.target.value)}>
-                      {departements.map(dep => <option>{dep}</option>)}
-                    </select>
-                  </div>
+                  <FormFieldSelect listToChose={departements} onChange={(e:any)=>add_employerDepartement(e.target.value)} />
                   <div className="container_btn ">
                     {hidden && <button className="btns" onClick={event => addNewDepartement(event)}>ok</button>}
                     {!hidden && <button className="btns" onClick={event => hiddenSetHidden(event)}>Ajouter Unite</button>}
@@ -115,24 +115,35 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
         </div>
       </div>
       <hr />
-      <h2> Les autorisations </h2>
-      <hr />
     </div>
   )
 }
 
-interface FormFieldProps{
-  label : string
-  placeholder : string 
-  name? : string
-  type? : string
-  changeHandler : (e : any)=>void
+interface FormFieldProps {
+  label: string
+  placeholder: string
+  name?: string
+  type?: string
+  changeHandler: (e: any) => void
 }
-const FormField : React.FC<FormFieldProps> = ({type , label, placeholder, name, changeHandler}) => (
+const FormField: React.FC<FormFieldProps> = ({ type, label, placeholder, name, changeHandler }) => (
   <div className="col_half">
     <label>{label}</label>
     <div className="input_field">
-      <input type={type} name={name} placeholder={placeholder} onChange={(e:any)=>changeHandler(e.target.value)}/>
+      <input type={type} name={name} placeholder={placeholder} onChange={(e: any) => changeHandler(e.target.value)} />
     </div>
+  </div>
+)
+
+interface FormFieldSelectProps {
+  listToChose : any[]
+  onChange ? : (e : any) => void
+}
+
+const FormFieldSelect: React.FC<FormFieldSelectProps> = ({listToChose, onChange }) => (
+  <div className="select">
+    <select name="slct" id="slct" onChange={onChange}>
+      {listToChose.map(dep => <option>{dep}</option>)}
+    </select>
   </div>
 )

@@ -27,8 +27,7 @@ export const StaffListALL : React.FC<any> = () =>{
                     <Th>unite</Th>
                 </Tr>
             </thead>
-            <tbody>
-                
+            <tbody>         
                 <Tr>
                     <Td><Link to={`./update`}>khmalech</Link></Td>
                     <Td>Mohammed</Td>
