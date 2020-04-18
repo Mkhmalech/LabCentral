@@ -187,21 +187,3 @@ export const Setting: React.FC<any> = () => {
         </div>
     )
 }
-
-
-interface FormFieldProps{
-    label : string
-    placeholder : string 
-    name? : string
-    type? : string
-  }
-  
-  const FormField : React.FC<FormFieldProps> = ({type , label, placeholder, name}) => (
-    <div className="col_half">
-      <label>{label}</label>
-      <div className="input_field">
-        <input type={type} name={name} placeholder={placeholder} />
-      </div>
-    </div>
-  )  
-
