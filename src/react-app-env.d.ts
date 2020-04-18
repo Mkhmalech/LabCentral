@@ -1,5 +1,6 @@
 /// <reference types="react-scripts" />
 /// <reference types="./ittyni-staff" />
+/// <reference types="./ittyni-garde" />
 
 // Globals
 type PersonCivility = string;
@@ -13,12 +14,10 @@ interface Person {
   email?: PersonEmail;
 }
 
-interface Garde {}
-
 interface LabCentralState {
   //hadi hiya state dyal application hna fin ghadi nzeed staff :ok
   staff?: LabStaffState; // hna darnah y9ad ykon undefined bach maybanch:
-  // garde: Garde;
+  garde: LaboShiftState;
   router: RouterState;
 }
 

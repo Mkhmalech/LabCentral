@@ -139,10 +139,21 @@ export const Setting: React.FC<any> = () => {
         {title : "Ajouter Jours Ferie", headers: ["Jours Ferie"], data : dataJrF },
         {title : "Ajouter Conge", headers: ["Conge", "duree", "unite"], data : DataConge },
         {title : "Ajouter Automates", headers: ["Marque", "refrerence", "version"], data : dataAutomate },
+
+
+export const Setting: React.FC<any> = () => {
+
+    const Parameters = [
+        {title : "Ajouter Departement", headers: ["departement"], data : ["Biochimie"] },
+        {title : "Ajouter Jours Ferie", headers: ["Jours Ferie"], data : ["Marche Verte"] },
+        {title : "Ajouter Conge", headers: ["Conge", "duree", "unite"], data : ["Maternite", "3", "Jours"] },
+        {title : "Ajouter Automates", headers: ["Marque", "refrerence", "version"], data : ["archetecte", "8000-i", "2013"] },
+
     ]
 
     return (
         <div>
+
             {add && <Dropallback/>}
           {add && <PopUp PopUpAppointment title={formData.text} canCancel canConfirm onCancel={() => test()} onConfirm={
 
@@ -161,6 +172,11 @@ export const Setting: React.FC<any> = () => {
                 <div key={parameter.title}>
                 <h1>{parameter.title}</h1> 
                 <button onClick={() => displayPopUp(parameter.title)}>add</button>
+
+            {Parameters.map((parameter:any) =>(
+                <div key={parameter.title}>
+                <h1>{parameter.title}</h1>
+
                 <hr />
                 <p>
                     <Table>
@@ -169,6 +185,7 @@ export const Setting: React.FC<any> = () => {
                             {parameter.headers.map((header:any) =><Th key={header}>{header}</Th>)}
                         </Tr>
                         </thead>
+
                         <tbody>{parameter.data.map((body:any)=><Tr>
                             {body.titre && <Td>{body.titre}</Td>}
                             {body.conge && <Td>{body.conge}</Td>}
@@ -179,6 +196,9 @@ export const Setting: React.FC<any> = () => {
                             {body.reference && <Td>{body.reference}</Td>}
                             {body.version && <Td>{body.version}</Td>}
                             </Tr>)}</tbody>
+
+                        <tbody><Tr>{parameter.data.map((body:any)=><Td>{body}</Td>)}</Tr></tbody>
+
                     </Table>
                 </p>
                 <hr />
@@ -187,3 +207,6 @@ export const Setting: React.FC<any> = () => {
         </div>
     )
 }
+
+}
+

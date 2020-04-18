@@ -20,7 +20,7 @@ export const StaffListALL : React.FC<any> = () =>{
     const staff = new Staff();
 
     React.useLayoutEffect(()=>{
-        staff.addNewEmployers({firstName : "mohammed", lastName : "khmalech", departement : "biochimie"})
+        // staff.addNewEmployers({firstName : "mohammed", lastName : "khmalech", departement : "biochimie"})
     })
 
 interface FormFieldProps{
