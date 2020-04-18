@@ -3,7 +3,7 @@ import "./styles.css";
 import styled from "styled-components";
 import { Switch, Route } from "react-router";
 // import { PersonalHome } from "./labpersonal-ittyni/src";
-import { Garde } from "../Garde/src/garde";
+// import { Garde } from "../ittyni-garde/src/garde";
 
 export default function App() {
   // const date = new Date().toISOString();
@@ -11,14 +11,14 @@ export default function App() {
     <div className="App">
       <Container>
         <Switch>
-          <Route path="/gardes" component={Garde} />
+
           {/* <Route path="/personal" component={PersonalHome} /> */}
-          <Route path="/" component={Garde} exact />
+
         </Switch>
       </Container>
     </div>
   );
-}
+} 
 const Container = styled.div`
   margin-left: 300px;
   @media (max-width: 700px) {

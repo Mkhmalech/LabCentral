@@ -34,6 +34,7 @@
 }
 .form_wrapper .row {
 	margin:10px -15px;
+	flex-direction: column;
 }
 .form_wrapper .row > div {
 	padding:0 15px;
