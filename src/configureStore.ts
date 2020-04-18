@@ -1,4 +1,5 @@
 import { Store, createStore, applyMiddleware } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { History } from "history";
 
 import { createRootReducer, rootSaga } from "./Store";
@@ -14,7 +15,7 @@ export const configureStore = (
   const store = createStore(
     createRootReducer(history),
     initialState, // mochkil howa route makaynch fe state dyal application
-    applyMiddleware(routerMiddleware(history), sagaMiddleware)
+   composeWithDevTools(applyMiddleware(routerMiddleware(history), sagaMiddleware))
   );
 
   sagaMiddleware.run(rootSaga);
