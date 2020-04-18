@@ -50,6 +50,7 @@ export const AdminLayout : React.FC<LayoutInterface> = () => {
           <Route path={settingRoutes.admin.laboSetting.path} 
                  component={settingRoutes.admin.laboSetting.component}
           />
+
           {/* garde routes */}
           <Route path={gardeRoutes.admin.GardeViewAll.path} 
                  render={()=><gardeRoutes.admin.GardeViewAll.component/>} 
@@ -61,6 +62,7 @@ export const AdminLayout : React.FC<LayoutInterface> = () => {
           <Route path={ticketsRoutes.admin.TicketsViewAll.path}
                  component={ticketsRoutes.admin.TicketsViewAll.component}
           />
+
         </Wrapper.Body>
 
         {/* end of body container  */}

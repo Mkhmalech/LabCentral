@@ -1,3 +1,2 @@
-export enum StaffActions {
-    ADD_NEW_EMPLOYER = "@@staff/ADD_NEW_EMPLOYER"
-}
+export const ADD_EMPLOYER = 'ADD_EMPLOYER';
+export const ADD_ERROR = 'ADD_ERROR';

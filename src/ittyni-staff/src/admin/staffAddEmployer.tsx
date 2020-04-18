@@ -27,12 +27,21 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
 
   const [employer, addEmployer] = React.useState<Employer>()
 
+  const form = {
+    employerFName,
+    employerLName,
+    employerCivility,
+    employerDepartement, /* not working add default , changed value and fix it */
+    employerPPR
+  }
+
+
   // form data 
-  const formData: FormFieldProps[] = [
-    // @TODO add civilite dropdown Mr, Mme
-    { label: "Nom", placeholder: "nom", changeHandler: add_employerLName },
-    { label: "Prenom", placeholder: "Prenom", changeHandler: add_employerFName },
-    { label: "PPR", placeholder: "ppr", changeHandler: add_employerPPR, type: "number" }
+  const formData : FormFieldProps[]= [
+    // @Todo add civilite dropdown Mr, Mme
+    {label : "Nom", placeholder : "nom", changeHandler : add_employerLName},
+    {label : "Prenom", placeholder : "Prenom", changeHandler : add_employerFName},
+    {label : "PPR", placeholder : "ppr", changeHandler : add_employerPPR, type : "number"}
   ]
 
 
@@ -41,8 +50,6 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
     event.preventDefault()
     setHidden(!hidden)
   }
-
-
 
   const createEmployer = () => {
     console.log([
@@ -126,7 +133,10 @@ interface FormFieldProps {
   type?: string
   changeHandler: (e: any) => void
 }
-const FormField: React.FC<FormFieldProps> = ({ type, label, placeholder, name, changeHandler }) => (
+
+
+const FormField : React.FC<FormFieldProps> = ({type , label, placeholder, name, changeHandler}) => (
+
   <div className="col_half">
     <label>{label}</label>
     <div className="input_field">
