@@ -39,16 +39,19 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
     setHidden(!hidden)
   }
 
+  const form = {
+    employerFName,
+    employerLName,
+    employerCivility,
+    employerDepartement, /* not working add default , changed value and fix it */
+    employerPPR
+  }
   
 
   const createEmployer = () => {
-    console.log([
-      employerFName,
-      employerLName,
-      employerCivility,
-      employerDepartement, /* not working add default , changed value and fix it */
-      employerPPR
-    ])
+    console.log(
+      form
+    )
   }
 
   const addNewDepartement = (event: React.MouseEvent) => {
@@ -128,6 +131,7 @@ interface FormFieldProps{
   type? : string
   changeHandler : (e : any)=>void
 }
+
 const FormField : React.FC<FormFieldProps> = ({type , label, placeholder, name, changeHandler}) => (
   <div className="col_half">
     <label>{label}</label>
