@@ -24,8 +24,15 @@ const Main: React.FC<MainProps> = ({ history, store }) => (
           path={routes.adminpages.path}
           component={routes.adminpages.component}
         />
+        {/** route to Login component */}
+        <Route 
+          path={routes.auth.path}
+          component={routes.auth.component}
+        />
+
+        {/* redirect inexisting routes */}
         <Redirect from="/*" to={routes.adminpages.path} />{" "}
-        {/* nkhaliweha fe admin 7ta nssaliw o 3ad n9adouha: ok */}
+
       </Switch>
     </Router>
   </Provider>

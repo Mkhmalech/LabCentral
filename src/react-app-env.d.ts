@@ -16,8 +16,8 @@ interface Person {
 }
 
 interface LabCentralState {
-  //hadi hiya state dyal application hna fin ghadi nzeed staff :ok
-  staff?: LabStaffState; // hna darnah y9ad ykon undefined bach maybanch:
+  auth : AuthState
+  staff?: LabStaffState; 
   garde: LaboShiftState;
   router: RouterState;
 }
