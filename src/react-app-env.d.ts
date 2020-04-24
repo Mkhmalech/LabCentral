@@ -1,6 +1,7 @@
 /// <reference types="react-scripts" />
 /// <reference types="./ittyni-staff" />
 /// <reference types="./ittyni-garde" />
+/// <reference types="./authentification-redux-lib" />
 
 // Globals
 type PersonCivility = string;

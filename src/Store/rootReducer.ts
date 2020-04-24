@@ -11,6 +11,7 @@ import { fork, all } from "redux-saga/effects";
 // personal module
 // import { personalReducer } from "../labpersonal-ittyni/src/store/reducer";
 import { staffReducer } from '../ittyni-staff/src/store/reducers';
+import { LabLaboStaffSaga } from '../ittyni-staff/src/store/saga';
 import { shiftReducer } from '../ittyni-garde/src/store/reducer';
 
 export const createRootReducer = (history: History) =>
@@ -25,7 +26,8 @@ export function* rootSaga() {
   yield all([
     //  Auth
     //  fork(AuthSaga),
-    //  Personal
+    //  Staff
+    fork(LabLaboStaffSaga)
     //  Gards
     // Tickets
   ]);

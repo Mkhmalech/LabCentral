@@ -1,6 +1,6 @@
 /* PopUpParams */
 
-.modal1 {
+.modal {
     width: 50%;
     background: white;
     /* color: red; */
@@ -9,7 +9,7 @@
     top: 20vh;
   }
   
-  .modal__header1 {
+  .modal__header {
     padding: 1rem;
     background: #212529;
     color: white;

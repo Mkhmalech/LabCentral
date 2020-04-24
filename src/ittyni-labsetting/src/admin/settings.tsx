@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Table, Tr, Th, Td } from '../common/listStyle'
 import {PopUp} from './popUps'
 import {Dropallback} from './dropallback'
-import './popUps.css'
+
 
 export const Setting: React.FC<any> = () => {  
 

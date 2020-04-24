@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 export const PopUp: React.FC<any> = (props) => {
 
     return (
