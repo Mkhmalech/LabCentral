@@ -3,12 +3,13 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 
-export const SideApp = () => {
+const SideApp = () => {
   const date = new Date();
   return (
   <Sidebar>
     <SidebarHeader>
       <UserAvatar>
+        <label ></label>
         <img
           alt="avatar"
           src="https://gravatar.com/avatar/28286631ce8385ff2b6b39f9a8d18aaa?s=80&amp;d=https://static.codepen.io/assets/avatars/user-avatar-80x80-bdcd44a3bfb9a5fd01eb8b86f9e033fa1a9897c3a15b33adfc2649a002dab1b6.png"

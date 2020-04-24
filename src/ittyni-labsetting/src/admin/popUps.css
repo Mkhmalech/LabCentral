@@ -1,7 +1,7 @@
 /* PopUpParams */
 
-.modal {
-    width: 50%;
+.modal1 {
+    width: 40%;
     background: white;
     /* color: red; */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -22,17 +22,22 @@
   
   .modal__content {
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .modal__actions {
     display: flex;
     justify-content: flex-end;
     padding: 1rem;
+    JUSTIFY-CONTENT: center;
+    margin: 0 10px;
   }
-  @media(min-width: 768px) {
-    .modal {
-      width: 30rem;
-      left: calc((100% - 30rem) / 2);
+  @media(max-width: 700px) {
+    .modal1 {
+      width: 85%;
+      /* left: calc((100% - 30rem) / 2); */
     }
 }
 
@@ -46,8 +51,34 @@
 }
 
 .input_param{
-  margin:10px;
+  display: block;
+  margin:10px 0;
   border-radius: 5px;
-    border: none;
     padding: 5px;
+    width: 80%;
+    border: 1px solid gray;
+    border-radius: 3px;
+}
+
+.container_inputs_Params{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.btnPOP{
+  color: #117a8b;
+  font-size: 1em; 
+  margin: 1em;
+  width: 150px;
+  padding: 0.25em 1em;
+  border: 2px solid #117a8b;
+  border-radius: 3px;
+}
+
+@media(max-width: 700px){
+  .btnPOP {
+    padding: 0.5em;
+  }
 }

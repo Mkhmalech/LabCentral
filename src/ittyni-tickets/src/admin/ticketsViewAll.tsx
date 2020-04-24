@@ -11,7 +11,7 @@ export const TicketsViewAll: React.FC<any> = () => {
     ]
 
     return (
-        <div>
+        <div style={{width: "90%"}}>
             {Parameters.map((parameter:any) =>(
                 <div key={parameter.title}>
                 <h1>{parameter.title}</h1>
