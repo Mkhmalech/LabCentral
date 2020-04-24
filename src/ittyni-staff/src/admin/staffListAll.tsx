@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { staff } from '../controller/staff';
-import { Table, Tr, Th, Td } from './listStyle';
+import {Table, Tr, Th, Td} from './listStyle';
+import { TitleTablePararameters } from '../../../ittyni-labsetting/src/common/settingStyle';
 
 export const StaffListALL: React.FC<any> = () => {
 
@@ -64,12 +64,15 @@ export const StaffListALL: React.FC<any> = () => {
         </Tr>
     ))
 
-    const staffTbody = <tbody className="text-center">{Employes}</tbody>
+       const staffTbody = <tbody>{Employes}</tbody> 
 
-    return (
-        <div>
-            <h1 onClick={e=>staff.test()}>List des Personelles de laboratoire CHU</h1>
-            <Link to={'./add-new-employer'} >Ajouter Nouveau </Link>
+    return(
+        <div style={{width: "90%"}}>
+            <TitleTablePararameters>
+            List des Personelles de laboratoire CHU
+            </TitleTablePararameters>
+       
+        <Link to={'./add-new-employer'} >Ajouter Nouveau </Link>
 
             <hr />
             <div>

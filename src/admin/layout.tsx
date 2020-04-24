@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as Wrapper from "../commons/wrappers";
-import {SideApp} from './sidebar'
+import {Sid} from './sidebar1'
 import { staffRoutes } from '../ittyni-staff/src/staffRoutes';
 import { settingRoutes } from '../ittyni-labsetting/src/settingRoutes';
 
@@ -8,6 +8,7 @@ import { Route, Redirect } from "react-router-dom";
 import { gardeRoutes } from '../ittyni-garde/src/gardeRoutes';
 import { ticketsRoutes } from '../ittyni-tickets/src/ticketsRoutes';
 import { connect, useSelector } from "react-redux";
+import { Container } from '../ittyni-labsetting/src/common/settingStyle';
 
 const username = 'mohammed';
 
@@ -24,19 +25,23 @@ export const AdminLayout : React.FC<LayoutInterface> = () => {
       {/**
       header goes here
     */}
-      <Wrapper.Header>Laboratoire Centrale de CHU Hassan II - Fes -</Wrapper.Header>
+      {/* <Wrapper.Header>Laboratoire Centrale de CHU Hassan II - Fes -</Wrapper.Header> */}
 
        {/* main container  */}
       <Wrapper.BodyContainer>
 
         {/* sidebar wrapper */}
-        <Wrapper.Sidebar>
-          <SideApp />
-        </Wrapper.Sidebar>
+        {/* <Wrapper.Sidebar>
+          <Sid />
+        </Wrapper.Sidebar> */}
+      
+          <Sid />
+       
 
         {/* body wrapper */}
         <Wrapper.Body>
           {/* staff Component */}
+          <Container>
           <Route path={staffRoutes.StaffListAll.admin.path} 
                  component={staffRoutes.StaffListAll.admin.component} 
           />
@@ -47,6 +52,7 @@ export const AdminLayout : React.FC<LayoutInterface> = () => {
                  component={staffRoutes.StaffUpdateEmployer.admin.component} 
           />
           {/* setting Component */}
+
           <Route path={settingRoutes.admin.laboSetting.path} 
                  component={settingRoutes.admin.laboSetting.component}
           />
@@ -62,7 +68,7 @@ export const AdminLayout : React.FC<LayoutInterface> = () => {
           <Route path={ticketsRoutes.admin.TicketsViewAll.path}
                  component={ticketsRoutes.admin.TicketsViewAll.component}
           />
-
+</Container>
         </Wrapper.Body>
 
         {/* end of body container  */}

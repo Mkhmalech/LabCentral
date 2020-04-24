@@ -2,7 +2,9 @@ import { StaffListALL } from "./admin/staffListAll";
 import { StaffAddEmployer } from './admin/staffAddEmployer';
 import { StaffUpdateEmployer } from './admin/staffUpdateEmployer';
 
+
 export const staffRoutes = {
+    
     StaffListAll : {
         admin : {
             path : '/admin/:user/staff/list-all-employers',
@@ -23,4 +25,5 @@ export const staffRoutes = {
             component : StaffUpdateEmployer
         }
     }
+   
 }
