@@ -44,4 +44,5 @@ export const Body = styled("div")`
 export const Footer = styled("div")`
   background : rgb(0, 0, 0);
   color : rgb(250,250,250);
+  width: 100%;
 `;
