@@ -2,11 +2,55 @@ import * as React from 'react';
 import { Table, Tr, Th, Td } from '../common/listStyle'
 import { PopUp } from './popUps'
 import { Dropallback } from './dropallback'
-import './popup.css'
+import {
+    Container,
+    ContainerNavigation,
+    LinkNavigation,
+    ContainerSearch,
+    Button, Input,
+    TitleTablePararameters, 
+    SpanTextButtonNouveu} from '../common/settingStyle'
+import './popUps.css'
 
 export const Setting: React.FC<any> = () => {
 
     const [add, addCreateParams] = React.useState(false);
+
+    // Navigation inside Parameters Table initialised by table "Ajouter Conge"
+    const [navigateValue, navigateParams] = React.useState({
+        navigate:"Ajouter Conge"
+    });
+    const {
+        navigate
+    } = navigateValue;
+
+    const showDepartement = (event: React.MouseEvent) => {
+        event.preventDefault()
+        navigateParams({
+            navigate: "Ajouter Departement"
+        })
+
+        
+    }
+    const showConge = () => {
+        
+        navigateParams({
+            navigate: "Ajouter Conge"
+        })
+    }
+    const showJrFirie = () => {
+        navigateParams({
+            navigate: "Ajouter Jours Ferie"
+        })
+    }
+    const showAutomates = () => {
+        navigateParams({
+            navigate: "Ajouter Automates"
+        })
+    }
+
+    // END Navigation inside Parameters Table 
+    
     const test = () => addCreateParams(!add)
 
     const [formData, setData] = React.useState({
@@ -39,32 +83,30 @@ export const Setting: React.FC<any> = () => {
 
 
     const inputsConge = (
-        <div>
-            <form>
-                <input type="text" name="conge" placeholder="conge" value={conge} onChange={e => onChangeConge(e)} />
-                <input type="text" name="duree" placeholder="duree" value={duree} onChange={e => onChangeConge(e)} />
-                <input type="text" name="unite" placeholder="unite" value={unite} onChange={e => onChangeConge(e)} />
-            </form>
+        <div className="container_inputs_Params">
+                <input className="input_param" type="text" name="conge" placeholder="conge" value={conge} onChange={e => onChangeConge(e)} />
+                <input className="input_param" type="text" name="duree" placeholder="duree" value={duree} onChange={e => onChangeConge(e)} />
+                <input className="input_param" type="text" name="unite" placeholder="unite" value={unite} onChange={e => onChangeConge(e)} />
         </div>
     )
 
     const inputsDep = (
-        <div>
-            <input type="text" name="titre" placeholder="departement" value={titre} onChange={e => onChangeDepartement(e)} />
+        <div className="container_inputs_Params">
+            <input className="input_param" type="text" name="titre" placeholder="departement" value={titre} onChange={e => onChangeDepartement(e)} />
         </div>
     )
 
     const inputsJrf = (
-        <div>
-            <input type="text" name="jrname" placeholder="jour ferie" value={jrname} onChange={e => onChangeJrFerie(e)} />
+        <div className="container_inputs_Params">
+            <input className="input_param" type="text" name="jrname" placeholder="jour ferie" value={jrname} onChange={e => onChangeJrFerie(e)} />
         </div>
     )
 
     const inputsAutom = (
-        <div>
-            <input type="text" name="marque" placeholder="marque" value={marque} onChange={e => onChangeAutomates(e)} />
-            <input type="text" name="reference" placeholder="reference" value={reference} onChange={e => onChangeAutomates(e)} />
-            <input type="text" name="version" placeholder="version" value={version} onChange={e => onChangeAutomates(e)} />
+        <div className="container_inputs_Params">
+            <input className="input_param" type="text" name="marque" placeholder="marque" value={marque} onChange={e => onChangeAutomates(e)} />
+            <input className="input_param" type="text" name="reference" placeholder="reference" value={reference} onChange={e => onChangeAutomates(e)} />
+            <input className="input_param" type="text" name="version" placeholder="version" value={version} onChange={e => onChangeAutomates(e)} />
         </div>
     )
 
@@ -142,7 +184,7 @@ export const Setting: React.FC<any> = () => {
     ]
 
     return (
-        <div>
+        <React.Fragment>
             {add && <Dropallback />}
             {add && <PopUp PopUpAppointment title={formData.text} canCancel canConfirm onCancel={() => test()} onConfirm={
 
@@ -157,11 +199,35 @@ export const Setting: React.FC<any> = () => {
                 {formData.text === "Ajouter Automates" && inputsAutom}
 
             </PopUp>}
+
+            {/* Navigation Inside parameters setting */}
+            <div style={{width: "90%"}}>
+            <TitleTablePararameters>Gestion Parameters</TitleTablePararameters>
+            </div>
+            
+               <ContainerNavigation> 
+                   <LinkNavigation onClick={()=> showConge()}>Conges</LinkNavigation>
+                   <LinkNavigation onClick={(event)=> showDepartement(event)}>Departements</LinkNavigation>
+                   <LinkNavigation onClick={()=> showJrFirie()}>Jours Ferie</LinkNavigation>
+                   <LinkNavigation onClick={()=> showAutomates()}>Automates</LinkNavigation>
+                </ContainerNavigation>
+               
+                {/* Serach Container */}
+                {/* <ContainerSearch>
+                    <Input type="text" name="search" placeholder="Search..." />
+                    <Button>+ Nouveau</Button>
+                </ContainerSearch> */}
+
             {Parameters.map((parameter: any) => (
+                <div style={{width:"90%"}}>
+                {parameter.title===navigate &&
                 <div key={parameter.title}>
-                    <h1>{parameter.title}</h1>
-                    <button onClick={() => displayPopUp(parameter.title)}>add</button>
-                    <hr />
+               <hr />
+                <ContainerSearch>
+                    <Input type="text" name="search" placeholder="Search..." />
+                    <Button onClick={() => displayPopUp(parameter.title)}>+ <SpanTextButtonNouveu >Nouveau</SpanTextButtonNouveu> </Button>
+                </ContainerSearch>
+                <hr />
                     <p>
                         <Table>
                             <thead>
@@ -182,10 +248,12 @@ export const Setting: React.FC<any> = () => {
                             </Tr>)}</tbody>
                         </Table>
                     </p>
-                    <hr />
+                    
                 </div>
+            }
+            </div>
             ))}
-        </div>
+        </React.Fragment>
     )
 }
 
