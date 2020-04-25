@@ -6,9 +6,9 @@ export const PopUp: React.FC<any> = (props) => {
     return (
         <div className="modal1">
             <section style={{textAlign: "center"}}>
-                  <header className="modal__header1">
+                  <div className="modal__header1">
                       <h1>{props.title}</h1>
-                  </header>
+                  </div>
                   <section className="modal__content">
                        {props.children}
                   </section>
