@@ -27,7 +27,6 @@ export const ContainerNavigation = styled.div`
 
 export const LinkNavigation = styled.a`
     color: black;
-    height: 100%;
     text-align: center;
     font-size: 10px;
     width: inherit;
@@ -91,4 +90,21 @@ export const SpanTextButtonNouveu = styled.span`
 @media(max-width: 700px){
   display: none;
 }
+`
+
+export const Container_inputs = styled.div`
+width: 100%;
+display: flex;
+align-items: center;
+flex-direction: column;
+`;
+
+export const Inputs = styled.input`
+display: block;
+margin:10px 0;
+border-radius: 5px;
+  padding: 1em;
+  width: 80%;
+  border: 1px solid gray;
+  border-radius: 3px;
 `
