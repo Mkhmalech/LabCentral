@@ -192,7 +192,7 @@ export const Setting: React.FC<any> = () => {
                 (event: any) => Add(event, text)
 
             }>
-                <p style={{ fontWeight: 900, color: "#343a40" }}>{formData.text}</p>
+              
 
                 {formData.text === "Ajouter Conge" && inputsConge}
                 {formData.text === "Ajouter Departement" && inputsDep}

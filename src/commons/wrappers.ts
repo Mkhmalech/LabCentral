@@ -35,13 +35,13 @@ export const Body = styled("div")`
     margin-left: auto;
     margin-right: auto;
   }
-
   transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
-
 `;
 
 // footer wrapper
 export const Footer = styled("div")`
   background : rgb(0, 0, 0);
   color : rgb(250,250,250);
+  width: 100%;
+  text-align: center;
 `;

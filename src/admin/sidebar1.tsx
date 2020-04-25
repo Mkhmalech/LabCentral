@@ -16,7 +16,7 @@ export const Sid = () => {
     <div className="spinner horizontal"></div>
     <div className="spinner diagonal part-2"></div>
   </label>
-    <label className="logoSideBar"  style={{float: "left",color:"#FFF", padding: "1.1em"}}>Laboratoire Centrale de CHU Hassan II - Fes -</label>
+    <label className="logoSideBar">Laboratoire Centrale de CHU Hassan II - Fes -</label>
   <div id="sidebarMenu">  
     <ul className="sidebarMenuInner">
       <li>Utilisateur Status<span>date : {date.toString()}</span></li>

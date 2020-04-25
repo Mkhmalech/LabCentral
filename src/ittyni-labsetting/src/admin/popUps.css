@@ -9,16 +9,14 @@
     top: 20vh;
   }
   
-  .modal__header {
+  .modal__header1 {
     padding: 1rem;
-    background: #212529;
+    background: #117A8B;
     color: white;
+    padding: 1em;
+
   }
   
-  .modal__header h1 {
-    margin: 0;
-    font-size: 1.25rem;
-  }
   
   .modal__content {
     padding: 1rem;
