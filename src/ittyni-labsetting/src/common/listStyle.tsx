@@ -5,7 +5,6 @@ export const Table = styled('table')`
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     border-spacing: 0;
     min-width: 100%;
-   
 `
 
 export const Tr = styled('tr')`

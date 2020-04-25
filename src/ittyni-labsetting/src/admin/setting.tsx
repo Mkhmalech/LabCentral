@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Table, Tr, Th, Td } from '../common/listStyle'
-import { PopUp } from './popUps'
-import { Dropallback } from './dropallback'
+import {Container_inputs, Inputs} from '../common/settingStyle'
+import {Dropallback} from '../../../commons/DropAllBack'
 import {
     Container,
     ContainerNavigation,
@@ -10,7 +10,7 @@ import {
     Button, Input,
     TitleTablePararameters, 
     SpanTextButtonNouveu} from '../common/settingStyle'
-import './popUps.css'
+import { PopUp } from '../../../commons/PopUp';
 
 
 export const Setting: React.FC<any> = () => {  
@@ -84,30 +84,30 @@ export const Setting: React.FC<any> = () => {
 
 
     const inputsConge = (
-        <div className="container_inputs_Params">
-                <input className="input_param" type="text" name="conge" placeholder="conge" value={conge} onChange={e => onChangeConge(e)} />
-                <input className="input_param" type="text" name="duree" placeholder="duree" value={duree} onChange={e => onChangeConge(e)} />
-                <input className="input_param" type="text" name="unite" placeholder="unite" value={unite} onChange={e => onChangeConge(e)} />
-        </div>
+        <Container_inputs>
+                <Inputs type="text" name="conge" placeholder="conge" value={conge} onChange={e => onChangeConge(e)} />
+                <Inputs type="text" name="duree" placeholder="duree" value={duree} onChange={e => onChangeConge(e)} />
+                <Inputs type="text" name="unite" placeholder="unite" value={unite} onChange={e => onChangeConge(e)} />
+        </Container_inputs>
     )
 
     const inputsDep = (
-        <div className="container_inputs_Params">
-            <input className="input_param" type="text" name="titre" placeholder="departement" value={titre} onChange={e => onChangeDepartement(e)} />
-        </div>
+        <Container_inputs>
+            <Inputs type="text" name="titre" placeholder="departement" value={titre} onChange={e => onChangeDepartement(e)} />
+        </Container_inputs>
     )
 
     const inputsJrf = (
-        <div className="container_inputs_Params">
-            <input className="input_param" type="text" name="jrname" placeholder="jour ferie" value={jrname} onChange={e => onChangeJrFerie(e)} />
-        </div>
+        <Container_inputs>
+            <Inputs type="text" name="jrname" placeholder="jour ferie" value={jrname} onChange={e => onChangeJrFerie(e)} />
+        </Container_inputs>
     )
 
     const inputsAutom = (
         <div className="container_inputs_Params">
-            <input className="input_param" type="text" name="marque" placeholder="marque" value={marque} onChange={e => onChangeAutomates(e)} />
-            <input className="input_param" type="text" name="reference" placeholder="reference" value={reference} onChange={e => onChangeAutomates(e)} />
-            <input className="input_param" type="text" name="version" placeholder="version" value={version} onChange={e => onChangeAutomates(e)} />
+            <Inputs type="text" name="marque" placeholder="marque" value={marque} onChange={e => onChangeAutomates(e)} />
+            <Inputs type="text" name="reference" placeholder="reference" value={reference} onChange={e => onChangeAutomates(e)} />
+            <Inputs type="text" name="version" placeholder="version" value={version} onChange={e => onChangeAutomates(e)} />
         </div>
     )
 
@@ -187,12 +187,12 @@ export const Setting: React.FC<any> = () => {
     return (
         <React.Fragment>
             {add && <Dropallback />}
-            {add && <PopUp PopUpAppointment title={formData.text} canCancel canConfirm onCancel={() => test()} onConfirm={
+            {add && <PopUp title={formData.text} canCancel canConfirm onCancel={() => test()} onConfirm={
 
                 (event: any) => Add(event, text)
 
             }>
-                <p style={{ fontWeight: 900, color: "#343a40" }}>{formData.text}</p>
+              
 
                 {formData.text === "Ajouter Conge" && inputsConge}
                 {formData.text === "Ajouter Departement" && inputsDep}

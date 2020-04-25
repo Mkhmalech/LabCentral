@@ -40,6 +40,7 @@ export const CreateNew : React.FC<any> = ({close}) => {
                             <option>Jours</option>
                             <option>Nuits</option>
                         </select>
+
                         <select style={{width : "100px"}} >
                             <option>pair</option>
                             <option>Impair</option>
