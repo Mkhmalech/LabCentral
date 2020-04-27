@@ -14,11 +14,17 @@ import { staffReducer } from '../ittyni-staff/src/store/reducers';
 import { LabLaboStaffSaga } from '../ittyni-staff/src/store/saga';
 import { shiftReducer } from '../ittyni-garde/src/store/reducer';
 
+
+// setting imports 
+import { settingReducer } from '../ittyni-labsetting/src/store/reducer';
+
+
 export const createRootReducer = (history: History) =>
   combineReducers({
     auth   : AuthReducer,
     garde : shiftReducer,
     staff: staffReducer /* reducer khfifff */,
+    setting : settingReducer,
     router: connectRouter(history) //hada makaynch fe state
   });
 // mazian daba
@@ -28,6 +34,8 @@ export function* rootSaga() {
     fork(AuthSaga),
     //  Staff
     fork(LabLaboStaffSaga)
+    // setting saga
+    
     //  Gards
     // Tickets
   ]);
