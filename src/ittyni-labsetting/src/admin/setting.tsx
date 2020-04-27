@@ -31,8 +31,6 @@ export const Setting: React.FC<any> = () => {
 
     // END Navigation inside Parameters Table 
 
-    const test = () => addCreateParams(!add)
-
     const [formData, setData] = React.useState({
         text: ''
     })
@@ -96,49 +94,26 @@ export const Setting: React.FC<any> = () => {
     const onChangeJrFerie = (e: any) => setFormDataJrF({ ...formparamsJ, [e.target.name]: e.target.value })
 
 
-    const Add = (event: React.MouseEvent, id: string) => {
-        event.preventDefault()
-        // Use your functions controller
-        if (id === "Ajouter Departement") {
-            DataDep.push(formparamsD)
-            console.log(DataDep)
-        }
-
-        if (id === "Ajouter Automates") {
-            dataAutomate.push(formparamsA)
-            console.log(dataAutomate)
-        }
-
-        if (id === "Ajouter Conge") {
-            DataConge.push(formparamsC)
-            console.log(DataConge)
-        }
-
-        if (id === "Ajouter Jours Ferie") {
-            dataJrF.push()
-            console.log(dataJrF)
-        }
 
 
-        addCreateParams(!add)
-    }
-    const DataDep = [
-        { name: "biochimie" }
-    ]
-    const DataConge = [
+    // settings data
+    const [Departements, setDepartements] = React.useState([{ name: "biochimie" }])
+
+    const [Congees, setCongees] = React.useState([
         { conge: "maternite", duree: "3", unite: "jrs" },
         { conge: "volantaire", duree: "10", unite: "jrs" }
-    ]
+    ])
 
-    const dataJrF = [
+    const [VacationDays, setVacationDays] = React.useState([
         { jrname: "la marche verte" },
         { jrname: "fete de l'independance" },
         { jrname: "revolution du roi et du peuple" }
-    ]
+    ])
 
-    const dataAutomate = [
+    const [Automates, setAutomate] = React.useState( [
         { marque: "archetecte", reference: "8000-i", version: "2013" }
-    ]
+    ])
+
 
     // operation title personalise
     const displayPopUp = (paramP: any) => {
@@ -155,10 +130,10 @@ export const Setting: React.FC<any> = () => {
 
 
     const Parameters = [
-        { title: "Ajouter Departement", headers: ["departement"], data: DataDep },
-        { title: "Ajouter Jours Ferie", headers: ["Jours Ferie"], data: dataJrF },
-        { title: "Ajouter Conge", headers: ["Conge", "duree", "unite"], data: DataConge },
-        { title: "Ajouter Automates", headers: ["Marque", "refrerence", "version"], data: dataAutomate }
+        { title: "Ajouter Departement", headers: ["departement"], data: Departements },
+        { title: "Ajouter Jours Ferie", headers: ["Jours Ferie"], data: Congees },
+        { title: "Ajouter Conge", headers: ["Conge", "duree", "unite"], data: VacationDays },
+        { title: "Ajouter Automates", headers: ["Marque", "refrerence", "version"], data: Automates }
     ]
 
     return (
@@ -166,7 +141,7 @@ export const Setting: React.FC<any> = () => {
             {add && <Dropallback />}
             {add && (
                 <PopUp title={formData.text} canCancel canConfirm
-                    onCancel={() => addCreateParams(!add)} onConfirm={(event: any) => Add(event, text)}>
+                    onCancel={() => addCreateParams(!add)} onConfirm={(event: any) => { }/*  Add(event, text) */}>
                     {formData.text === "Ajouter Conge" && inputsConge}
                     {formData.text === "Ajouter Departement" && inputsDep}
                     {formData.text === "Ajouter Jours Ferie" && inputsJrf}
@@ -204,7 +179,7 @@ export const Setting: React.FC<any> = () => {
                                     </Tr>
                                 </thead>
 
-                                <tbody>{parameter.data.map((body: any) => <Tr key={body.name || body.conge || body.unite || body.jrname }>
+                                <tbody>{parameter.data.map((body: any) => <Tr key={body.name || body.conge || body.unite || body.jrname}>
                                     {body.name && <Td>{body.name}</Td>}
                                     {body.conge && <Td>{body.conge}</Td>}
                                     {body.jrname && <Td>{body.jrname}</Td>}
