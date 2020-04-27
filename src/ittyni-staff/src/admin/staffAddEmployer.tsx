@@ -82,7 +82,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
         <div className="col_half">
           <label>Nom</label>
           <div className="input_field">
-            <input type="text" name="nom" value={nom} placeholder="*nom" onChange={(e:any)=> onChangeE(e)}/>
+            <input type="text" name="nom" value={nom} placeholder="* nom" onChange={(e:any)=> onChangeE(e)}/>
           </div>
         </div>
         <div className="col_half">
@@ -115,7 +115,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
       </div>
       <div className="row clearfix">
         <div className="col_half">
-          <label>Sex</label>
+          <label>Civilite</label>
               {/* <FormFieldSelect listToChose={["-","Mr", "Mme"]} onChange={(e)=>add_employerCivility(e.target.value)} width="100%" /> */}
               <FormFieldSelect listToChose={["-","Mr", "Mme"]} name="sex" value={sex} onChange={(e:any)=> onChangeE(e)} width="100%" />
         </div>

@@ -1,6 +1,7 @@
 /// <reference types="react-scripts" />
 /// <reference types="./ittyni-staff" />
 /// <reference types="./ittyni-garde" />
+/// <reference types="./ittyni-labsetting" />
 /// <reference types="./authentification-redux-lib" />
 
 // Globals
@@ -19,6 +20,7 @@ interface LabCentralState {
   auth : AuthState
   staff?: LabStaffState; 
   garde: LaboShiftState;
+  setting? : LaboSetting 
   router: RouterState;
 }
 

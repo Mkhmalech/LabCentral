@@ -1,4 +1,4 @@
-declare enum LaboSettings {
+declare enum SettingActions {
 
     // add departement
     LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT = "@@setting/LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT",
@@ -6,7 +6,22 @@ declare enum LaboSettings {
     LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT_SUCCESS = "@@setting/LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT_SUCCESS",
 
     // add departement
+    LAB_LABO_SETTING_LIST_DEPARTEMENT = "@@setting/LAB_LABO_SETTING_LIST_DEPARTEMENT",
+    LAB_LABO_SETTING_LIST_DEPARTEMENT_ERROR = "@@setting/LAB_LABO_SETTING_LIST_DEPARTEMENT_ERROR",
+    LAB_LABO_SETTING_LIST_DEPARTEMENT_SUCCESS = "@@setting/LAB_LABO_SETTING_LIST_DEPARTEMENT_SUCCESS",
+
+    // add departement
     LAB_LABO_SETTING_ADD_NEW_HOLIDAY = "@@setting/LAB_LABO_SETTING_ADD_NEW_HOLIDAY",
     LAB_LABO_SETTING_ADD_NEW_HOLIDAY_ERROR = "@@setting/LAB_LABO_SETTING_ADD_NEW_HOLIDAY_ERROR",
     LAB_LABO_SETTING_ADD_NEW_HOLIDAY_SUCCESS = "@@setting/LAB_LABO_SETTING_ADD_NEW_HOLIDAY_SUCCESS",
+}
+
+type LaboSettingDepartementName = string
+
+interface LaboSettingDepartement {
+    name : LaboSettingDepartementName
+}
+
+interface LaboSetting {
+    departements : LaboSettingDepartement[]
 }
