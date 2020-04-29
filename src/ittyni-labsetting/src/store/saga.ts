@@ -15,11 +15,23 @@ function* fetchDepartements({path, payload} : AnyAction){
         SettingActions.LAB_LABO_SETTING_LIST_DEPARTEMENT_SUCCESS
     )
 }
+/**
+ * labo add new setting departement
+ */
+function* addDepartement({path, payload} : AnyAction){
+    yield tryFetching(
+        path,
+        payload,
+        SettingActions.LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT_ERROR,
+        SettingActions.LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT_SUCCESS
+    )
+}
 //watcher func dispatcher
 function* watchLabLaboSetting(){
 
     // fetch tests form server 
     yield takeEvery(SettingActions.LAB_LABO_SETTING_LIST_DEPARTEMENT, fetchDepartements)
+    yield takeEvery(SettingActions.LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT, addDepartement)
 }
 
 export function* LabLaboSettingSaga(){

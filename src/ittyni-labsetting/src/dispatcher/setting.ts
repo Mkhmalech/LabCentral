@@ -2,6 +2,8 @@ import { store } from '../../../index';
 import { SettingActions } from '../store/actions';
 class Setting {
 
+    private accountName : string = "Centrale du CHU Hassan II";
+
     // get labo Departements
     fetchDepartement = ()=>store.dispatch({
         type : SettingActions.LAB_LABO_SETTING_LIST_DEPARTEMENT,
@@ -12,7 +14,13 @@ class Setting {
     })
 
     // add departement
-    addDepartement = (departement : any)=>console.log(departement)
+    addDepartement = (departement : any)=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT,
+        payload : {
+            query:`mutation{setting{addDepartement(departement:{name:"${departement}",accountName : "${this.accountName}"})}}`
+        },
+        path : 'labos'
+    })
 
     // add departement
     addHoliday = (holiday : any)=>console.log(holiday)

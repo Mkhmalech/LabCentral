@@ -6,7 +6,8 @@ export const settingReducer : Reducer = (state={}, action : AnyAction) => {
         
         case SettingActions.LAB_LABO_SETTING_LIST_DEPARTEMENT_SUCCESS:
             return {...state, departements : action.payload.setting.listDepartement}
-    
+        case SettingActions.LAB_LABO_SETTING_ADD_NEW_DEPARTEMENT_SUCCESS:
+            return {...state}
         default:
             return {...state}
     }
