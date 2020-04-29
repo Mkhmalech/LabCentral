@@ -102,6 +102,7 @@ export const Setting: React.FC<any> = () => {
     // before anything fetch data first
     React.useEffect(() => {
         if (Departements.length <= 0) setting.fetchDepartement();
+        if (Congees.length <= 0) setting.fetchLeave();
     }, [])
 
     return (

@@ -8,7 +8,7 @@ class Setting {
     fetchDepartement = ()=>store.dispatch({
         type : SettingActions.LAB_LABO_SETTING_LIST_DEPARTEMENT,
         payload : {
-            query : `mutation {setting{listDepartement(accountName:"Centrale du CHU Hassan II"){name}}}`
+            query : `mutation {setting{listDepartement(accountName:"${this.accountName}"){name}}}`
         },
         path : 'labos'
     })
@@ -24,7 +24,11 @@ class Setting {
     
     // fetch holiday
     fetchHoliday = ()=>store.dispatch({
-        type : SettingActions.LAB_LABO_SETTING_LIST_HOLIDAY
+        type : SettingActions.LAB_LABO_SETTING_LIST_HOLIDAY,
+        payload : {
+            query : `mutation {setting{listHoliday(accountName:"${this.accountName}"){holiday from to}}}`
+        },
+        path : 'labos'
     })
     // add holiday
     addHoliday = (holiday : any)=>store.dispatch({
@@ -32,18 +36,27 @@ class Setting {
     })
     
     // fetch Leave
-    fetchLeave = (leave : any)=>store.dispatch({
-        type : SettingActions.LAB_LABO_SETTING_LIST_LEAVE
+    fetchLeave = ()=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_LIST_LEAVE,
+        payload : {
+            query : `mutation {setting{listLeave(accountName:"${this.accountName}"){leave duration}}}`
+        },
+        path : 'labos'
     })
 
     // add Leave
     addLeave = (leave : any)=>store.dispatch({
-        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_LEAVE
+        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_LEAVE,
+        
     })
 
     // add automate
-    fetchAutomate = (automate : any)=>store.dispatch({
-        type : SettingActions.LAB_LABO_SETTING_LIST_AUTOMATE
+    fetchAutomate = ()=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_LIST_AUTOMATE,
+        payload : {
+            query : `mutation {setting{listAutonate(accountName:"${this.accountName}"){brand analyzer entryDate}}}`
+        },
+        path : 'labos'
     })
 
     // add automate
