@@ -11,165 +11,124 @@ import {
     TitleTablePararameters,
     SpanTextButtonNouveu
 } from '../common/settingStyle'
+
+import setting from '../dispatcher/setting'
+
 import './popUps.css'
+import { useSelector } from 'react-redux';
 
 
 export const Setting: React.FC<any> = () => {
 
+    // show & hide add new param 
     const [add, addCreateParams] = React.useState(false);
 
     // Navigation inside Parameters Table initialised by table "Ajouter Conge"
     const [tab, setTab] = React.useState("Ajouter Conge");
 
-
     const showTab = (tab: any) => {
-        if (tab == "departement") setTab("Ajouter Departement")
-        if (tab == "conge") setTab("Ajouter Jours Ferie")
-        if (tab == "automates") setTab("Ajouter Conge")
-        if (tab == "Jours Ferie") setTab("Ajouter Automates")
+        if (tab == "departement") {
+            setDepartements([...departements])
+            setTab("Ajouter Departement");
+        }
+        if (tab == "Jours Ferie") setTab("Ajouter Jours Ferie")
+        if (tab == "conge") setTab("Ajouter Conge")
+        if (tab == "automates") setTab("Ajouter Automates")
     }
-
-    // END Navigation inside Parameters Table 
-
-    const [formData, setData] = React.useState({
-        text: ''
-    })
-    const {
-        text
-    } = formData;
-
-    const [formparamsC, setFormDataConge] = React.useState({
-        conge: '',
-        duree: '',
-        unite: ''
-    })
-    const [formparamsA, setFormDataAutom] = React.useState({
-        reference: '',
-        marque: '',
-        version: ''
-    })
-    const [formparamsD, setFormDataDepar] = React.useState({
-        name: ''
-    })
-    const [formparamsJ, setFormDataJrF] = React.useState({
-        jrname: ''
-    })
-    const { conge, duree, unite } = formparamsC;
-    const { reference, marque, version } = formparamsA;
-    const { name } = formparamsD;
-    const { jrname } = formparamsJ;
-
-
-    const inputsConge = (
-        <div className="container_inputs_Params">
-            <input className="input_param" type="text" name="conge" placeholder="conge" value={conge} onChange={e => onChangeConge(e)} />
-            <input className="input_param" type="text" name="duree" placeholder="duree" value={duree} onChange={e => onChangeConge(e)} />
-            <input className="input_param" type="text" name="unite" placeholder="unite" value={unite} onChange={e => onChangeConge(e)} />
-        </div>
-    )
-
-    const inputsDep = (
-        <div className="container_inputs_Params">
-            <input className="input_param" type="text" name="titre" placeholder="departement" value={name} onChange={e => onChangeDepartement(e)} />
-        </div>
-    )
-
-    const inputsJrf = (
-        <div className="container_inputs_Params">
-            <input className="input_param" type="text" name="jrname" placeholder="jour ferie" value={jrname} onChange={e => onChangeJrFerie(e)} />
-        </div>
-    )
-
-    const inputsAutom = (
-        <div className="container_inputs_Params">
-            <input className="input_param" type="text" name="marque" placeholder="marque" value={marque} onChange={e => onChangeAutomates(e)} />
-            <input className="input_param" type="text" name="reference" placeholder="reference" value={reference} onChange={e => onChangeAutomates(e)} />
-            <input className="input_param" type="text" name="version" placeholder="version" value={version} onChange={e => onChangeAutomates(e)} />
-        </div>
-    )
-
-    const onChangeConge = (e: any) => setFormDataConge({ ...formparamsC, [e.target.name]: e.target.value })
-    const onChangeDepartement = (e: any) => setFormDataDepar({ ...formparamsD, [e.target.name]: e.target.value })
-    const onChangeAutomates = (e: any) => setFormDataAutom({ ...formparamsA, [e.target.name]: e.target.value })
-    const onChangeJrFerie = (e: any) => setFormDataJrF({ ...formparamsJ, [e.target.name]: e.target.value })
-
-
-
 
     // settings data
-    const [Departements, setDepartements] = React.useState([{ name: "biochimie" }])
+    const [Departement, setDepartement] = React.useState<string>()
+    const [Departements, setDepartements] = React.useState<any[]>([])
+    const departements = useSelector((state: any) => state.setting.departements);
 
-    const [Congees, setCongees] = React.useState([
-        { conge: "maternite", duree: "3", unite: "jrs" },
-        { conge: "volantaire", duree: "10", unite: "jrs" }
-    ])
+    // setting Leaves
+    const [Congee, setCongee] = React.useState<string>();
+    const [CongeDuration, setCongeDuration] = React.useState<string>();
+    const [Congees, setCongees] = React.useState([]);
+    const leaves = useSelector((state: any) => state.setting.leaves);
 
-    const [VacationDays, setVacationDays] = React.useState([
-        { jrname: "la marche verte" },
-        { jrname: "fete de l'independance" },
-        { jrname: "revolution du roi et du peuple" }
-    ])
+    // setting holidays
+    const [VacationName, setVacationName] = React.useState<string>()
+    const [VacationFrom, setVacationFrom] = React.useState<Date>()
+    const [VacationTo, setVacationTo] = React.useState<Date>()
+    const [VacationDays, setVacationDays] = React.useState<any[]>([])
+    const holidays = useSelector((state: any) => state.setting.holidays);
 
-    const [Automates, setAutomate] = React.useState( [
-        { marque: "archetecte", reference: "8000-i", version: "2013" }
-    ])
-
-
-    // operation title personalise
-    const displayPopUp = (paramP: any) => {
-        Parameters.map(param => {
-            if (param.title === paramP) {
-                { paramP && addCreateParams(!add) }
-                setData({
-                    text: !param.title ? '' : param.title
-                })
-
-            }
-        })
-    }
+    // setting automates
+    const [AutomateBrand, setAutomateBrand] = React.useState<string>()
+    const [AutomateAnalyser, setAutomateAnalyser] = React.useState<string>()
+    const [AutomateDepartement, setAutomateDepartement] = React.useState<string>()
+    const [Automates, setAutomates] = React.useState([])
+    const automates = useSelector((state: any) => state.setting.automates);
 
 
     const Parameters = [
-        { title: "Ajouter Departement", headers: ["departement"], data: Departements },
-        { title: "Ajouter Jours Ferie", headers: ["Jours Ferie"], data: Congees },
-        { title: "Ajouter Conge", headers: ["Conge", "duree", "unite"], data: VacationDays },
-        { title: "Ajouter Automates", headers: ["Marque", "refrerence", "version"], data: Automates }
+        // departement
+        {
+            title: "Ajouter Departement", headers: ["departement"],
+            data: Departements, inputs: [{ field: "departement", onChange: setDepartement }],
+            addSetting: () => setting.addDepartement(Departement)
+        },
+        // Holidays  
+        {
+            title: "Ajouter Jours Ferie", headers: ["Jours Feries"], data: VacationDays, inputs: [
+                { field: "Jour Ferie", type: "text", onChange: setVacationName },
+                { field: "date de debut", type: "date", onChange: setVacationFrom },
+                { field: "date de fin", type: "date", onChange: setVacationTo },
+            ],
+            addSetting: () => setting.addHoliday({ holiday: VacationName, from: VacationFrom, to: VacationTo })
+        },
+
+        // Leave
+        {
+            title: "Ajouter Conge", headers: ["Conge", "duree", "unite"], data: Congees, inputs: [
+                { field: "congee", type: "text", onChange: setCongee },
+                { field: "congee", type: "number", onChange: setCongeDuration }
+            ],
+            addSetting: () => setting.addHoliday({ leave: Congee, duration: CongeDuration })
+        },
+
+        // automate
+        {
+            title: "Ajouter Automates", headers: ["Marque", "refrerence", "version"], data: Automates, inputs: [
+                { field: "marque automate", type: "text", onChange: setAutomateBrand },
+                { field: "analyseur", type: "text", onChange: setAutomateAnalyser },
+                { field: "unite", type: "text", onChange: setAutomateDepartement },
+            ],
+            addSetting: setting.addAutomate({ brand: AutomateBrand, analyzer: AutomateAnalyser, departement: AutomateDepartement })
+        }
     ]
+
+    // before anything fetch data first
+    React.useEffect(() => {
+        if (Departements.length <= 0) setting.fetchDepartement();
+    }, [])
 
     return (
         <React.Fragment>
-            {add && <Dropallback />}
-            {add && (
-                <PopUp title={formData.text} canCancel canConfirm
-                    onCancel={() => addCreateParams(!add)} onConfirm={(event: any) => { }/*  Add(event, text) */}>
-                    {formData.text === "Ajouter Conge" && inputsConge}
-                    {formData.text === "Ajouter Departement" && inputsDep}
-                    {formData.text === "Ajouter Jours Ferie" && inputsJrf}
-                    {formData.text === "Ajouter Automates" && inputsAutom}
-                </PopUp>
-            )}
-
             {/* Navigation Inside parameters setting */}
             <div style={{ width: "90%" }}>
                 <TitleTablePararameters>Gestion Parameters</TitleTablePararameters>
             </div>
 
-            <TabNavigation tabs={["conge", "departement", "automates", "Jours Ferie"]} onClick={showTab} />
-
-            {/* Serach Container */}
-            {/* <ContainerSearch>
-                    <Input type="text" name="search" placeholder="Search..." />
-                    <Button>+ Nouveau</Button>
-                </ContainerSearch> */}
+            <TabNavigation tabs={["conge", "departement", "Jours Ferie", "automates"]} onClick={showTab} />
 
             {Parameters.map((parameter: any) => (
                 <div style={{ width: "90%" }}>
                     {parameter.title === tab &&
                         <div key={parameter.title}>
+                            {/* add parameter */}
+                            {add &&
+                                <ParametersModalCreateNew
+                                    title={parameter.title} showHideModal={() => addCreateParams(!add)}
+                                    inputs={parameter.inputs}
+                                    addSetting={parameter.addSetting}
+                                />
+                            }
                             <hr />
                             <ContainerSearch>
                                 <Input type="text" name="search" placeholder="Search..." />
-                                <Button onClick={() => displayPopUp(parameter.title)}>+ <SpanTextButtonNouveu >Nouveau</SpanTextButtonNouveu> </Button>
+                                <Button onClick={() => addCreateParams(!add)}>+ <SpanTextButtonNouveu >Nouveau</SpanTextButtonNouveu> </Button>
                             </ContainerSearch>
                             <hr />
                             <Table>
@@ -208,12 +167,16 @@ const TabNavigation = ({ tabs, onClick }: any) => (
     </ContainerNavigation>
 )
 
-const ParaModalInput = ({ inputs, onChange }: any) => (
-    <div className="container_inputs_Params">
-        {
-            inputs.map((input: any) => (
-                <input className="input_param" type="text" placeholder="conge" onChange={onChange} />
-            ))
-        }
-    </div>
+const ParametersModalCreateNew = ({ showHideModal, title, inputs, addSetting }: any) => (
+    <PopUp title={title} canCancel canConfirm
+        onCancel={showHideModal} onConfirm={addSetting}>
+        <div className="container_inputs_Params">
+            {
+                inputs.map((input: any) => (
+                    <input className="input_param" type={input.type}
+                        placeholder={input.field} onChange={(e) => input.onChange(e.target.value)} />
+                ))
+            }
+        </div>
+    </PopUp>
 )
