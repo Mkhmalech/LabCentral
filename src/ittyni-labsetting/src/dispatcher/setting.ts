@@ -48,7 +48,7 @@ class Setting {
 
     // add automate
     addAutomate = (automate : any)=>store.dispatch({
-        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_AOUTOMATE
+        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_AUTOMATE
     })
 }
 
