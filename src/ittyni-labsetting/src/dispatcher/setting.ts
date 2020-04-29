@@ -21,15 +21,35 @@ class Setting {
         },
         path : 'labos'
     })
-
-    // add departement
-    addHoliday = (holiday : any)=>console.log(holiday)
     
+    // fetch holiday
+    fetchHoliday = ()=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_LIST_HOLIDAY
+    })
+    // add holiday
+    addHoliday = (holiday : any)=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_HOLIDAY
+    })
+    
+    // fetch Leave
+    fetchLeave = (leave : any)=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_LIST_LEAVE
+    })
+
     // add Leave
-    addLeave = (leave : any)=>console.log(leave)
+    addLeave = (leave : any)=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_LEAVE
+    })
 
     // add automate
-    addAutomate = (automate : any)=>console.log(automate)
+    fetchAutomate = (automate : any)=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_LIST_AUTOMATE
+    })
+
+    // add automate
+    addAutomate = (automate : any)=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_AOUTOMATE
+    })
 }
 
 export default new Setting();
