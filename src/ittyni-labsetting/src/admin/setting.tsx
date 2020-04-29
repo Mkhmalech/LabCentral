@@ -93,9 +93,9 @@ export const Setting: React.FC<any> = () => {
             title: "Ajouter Automates", headers: ["Marque", "Refrerence", "mise en fonction"], data: Automates, inputs: [
                 { field: "marque automate", type: "text", onChange: setAutomateBrand },
                 { field: "analyseur", type: "text", onChange: setAutomateAnalyser },
-                { field: "anne de fonction", type: "text", onChange: setAutomateYear },
+                { field: "date de fonction", type: "date", onChange: setAutomateYear },
             ],
-            addSetting: setting.addAutomate({ brand: AutomateBrand, analyzer: AutomateAnalyser, departement: AutomateYear })
+            addSetting: ()=>setting.addAutomate({ brand: AutomateBrand, analyzer: AutomateAnalyser, departement: AutomateYear })
         }
     ]
 
