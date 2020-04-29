@@ -57,7 +57,7 @@ export const Setting: React.FC<any> = () => {
     // setting automates
     const [AutomateBrand, setAutomateBrand] = React.useState<string>()
     const [AutomateAnalyser, setAutomateAnalyser] = React.useState<string>()
-    const [AutomateDepartement, setAutomateDepartement] = React.useState<string>()
+    const [AutomateYear, setAutomateYear] = React.useState<string>()
     const [Automates, setAutomates] = React.useState([])
     const automates = useSelector((state: any) => state.setting.automates);
 
@@ -83,19 +83,19 @@ export const Setting: React.FC<any> = () => {
         {
             title: "Ajouter Conge", headers: ["Conge", "duree", "unite"], data: Congees, inputs: [
                 { field: "congee", type: "text", onChange: setCongee },
-                { field: "congee", type: "number", onChange: setCongeDuration }
+                { field: "duree du congee", type: "number", onChange: setCongeDuration }
             ],
             addSetting: () => setting.addHoliday({ leave: Congee, duration: CongeDuration })
         },
 
         // automate
         {
-            title: "Ajouter Automates", headers: ["Marque", "refrerence", "version"], data: Automates, inputs: [
+            title: "Ajouter Automates", headers: ["Marque", "Refrerence", "mise en fonction"], data: Automates, inputs: [
                 { field: "marque automate", type: "text", onChange: setAutomateBrand },
                 { field: "analyseur", type: "text", onChange: setAutomateAnalyser },
-                { field: "unite", type: "text", onChange: setAutomateDepartement },
+                { field: "anne de fonction", type: "text", onChange: setAutomateYear },
             ],
-            addSetting: setting.addAutomate({ brand: AutomateBrand, analyzer: AutomateAnalyser, departement: AutomateDepartement })
+            addSetting: setting.addAutomate({ brand: AutomateBrand, analyzer: AutomateAnalyser, departement: AutomateYear })
         }
     ]
 
