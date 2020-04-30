@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Table, Tr, Th, Td } from '../common/listStyle'
 import { PopUp } from './popUps'
-import { Dropallback } from './dropallback'
 import {
     Container,
     ContainerNavigation,
@@ -104,7 +103,7 @@ export const Setting: React.FC<any> = () => {
                 { field: "analyseur", type: "text", onChange: setAutomateAnalyser },
                 { field: "date de fonction", type: "date", onChange: setAutomateYear },
             ],
-            addSetting: ()=>setting.addAutomate({ brand: AutomateBrand, analyzer: AutomateAnalyser, setupDate: AutomateYear })
+            addSetting: ()=>setting.addAutomate({ brand: AutomateBrand, analyzer: AutomateAnalyser, entryDate: AutomateYear })
         }
     ]
     // before anything fetch data first
@@ -164,8 +163,8 @@ export const Setting: React.FC<any> = () => {
                                     
                                     {/* automate */}
                                     {body.brand && <Td>{body.brand}</Td>}
-                                    {body.analyser && <Td>{body.analyser}</Td>}
-                                    {body.setupDate && <Td>{new Date(body.setupDate).toDateString()}</Td>}
+                                    {body.analyzer && <Td>{body.analyzer}</Td>}
+                                    {body.entryDate && <Td>{new Date(body.entryDate).toDateString()}</Td>}
                                 </Tr>)}</tbody>
                             </Table>
                         </div>

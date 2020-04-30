@@ -61,14 +61,18 @@ class Setting {
     fetchAutomate = ()=>store.dispatch({
         type : SettingActions.LAB_LABO_SETTING_LIST_AUTOMATE,
         payload : {
-            query : `mutation {setting{listAutomate(accountName:"${this.accountName}"){brand analyzer entryDate}}}`
+            query : `mutation{setting{listAutomate(accountName:"${this.accountName}"){brand analyzer entryDate}}}`
         },
         path : 'labos'
     })
 
     // add automate
-    addAutomate = (automate : any)=>store.dispatch({
-        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_AUTOMATE
+    addAutomate = ({brand, analyzer, entryDate} : any)=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_AUTOMATE,
+        payload : {
+            query:`mutation{setting{addAutomate(automate:{brand:"${brand}",analyzer:"${analyzer}",entryDate:"${entryDate}",accountName:"${this.accountName}"})}}`
+        },
+        path:"labos"
     })
 }
 
