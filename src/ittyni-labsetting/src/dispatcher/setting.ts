@@ -31,8 +31,12 @@ class Setting {
         path : 'labos'
     })
     // add holiday
-    addHoliday = (holiday : any)=>store.dispatch({
-        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_HOLIDAY
+    addHoliday = ({holiday, from, to} : any)=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_ADD_NEW_HOLIDAY,
+        payload : {
+            query : `mutation{setting{addHoliday(holiday:{holiday:"${holiday}",from:"${from}",to:"${to}",accountName:"${this.accountName}"})}}`
+        },
+        path : "labos"
     })
     
     // fetch Leave
@@ -54,7 +58,7 @@ class Setting {
     fetchAutomate = ()=>store.dispatch({
         type : SettingActions.LAB_LABO_SETTING_LIST_AUTOMATE,
         payload : {
-            query : `mutation {setting{listAutonate(accountName:"${this.accountName}"){brand analyzer entryDate}}}`
+            query : `mutation {setting{listAutomate(accountName:"${this.accountName}"){brand analyzer entryDate}}}`
         },
         path : 'labos'
     })

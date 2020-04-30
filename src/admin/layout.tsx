@@ -17,9 +17,7 @@ LaboShiftState
 {}
 
 export const AdminLayout : React.FC<LayoutInterface> = () => {
-
-  const {garde} = useSelector((state : LabCentralState) => state)
-  console.log(garde)
+  
   return (
     <Wrapper.Container>
       {/**

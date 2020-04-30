@@ -31,9 +31,18 @@ export const Setting: React.FC<any> = () => {
             setDepartements([...departements])
             setTab("Ajouter Departement");
         }
-        if (tab == "Jours Ferie") setTab("Ajouter Jours Ferie")
-        if (tab == "conge") setTab("Ajouter Conge")
-        if (tab == "automates") setTab("Ajouter Automates")
+        if (tab == "Jours Ferie") {
+            setVacationDays([...holidays])
+            setTab("Ajouter Jours Ferie")
+        }
+        if (tab == "conge"){
+            setCongees([...leaves])
+            setTab("Ajouter Conge")
+        }
+        if (tab == "automates"){
+            setAutomates([...automates])
+            setTab("Ajouter Automates")
+        }
     }
 
     // settings data
@@ -44,7 +53,7 @@ export const Setting: React.FC<any> = () => {
     // setting Leaves
     const [Congee, setCongee] = React.useState<string>();
     const [CongeDuration, setCongeDuration] = React.useState<string>();
-    const [Congees, setCongees] = React.useState([]);
+    const [Congees, setCongees] = React.useState<any[]>([]);
     const leaves = useSelector((state: any) => state.setting.leaves);
 
     // setting holidays
@@ -58,7 +67,7 @@ export const Setting: React.FC<any> = () => {
     const [AutomateBrand, setAutomateBrand] = React.useState<string>()
     const [AutomateAnalyser, setAutomateAnalyser] = React.useState<string>()
     const [AutomateYear, setAutomateYear] = React.useState<string>()
-    const [Automates, setAutomates] = React.useState([])
+    const [Automates, setAutomates] = React.useState<any[]>([])
     const automates = useSelector((state: any) => state.setting.automates);
 
 
@@ -85,7 +94,7 @@ export const Setting: React.FC<any> = () => {
                 { field: "congee", type: "text", onChange: setCongee },
                 { field: "duree du congee", type: "number", onChange: setCongeDuration }
             ],
-            addSetting: () => setting.addHoliday({ leave: Congee, duration: CongeDuration })
+            addSetting: () => setting.addLeave({ leave: Congee, duration: CongeDuration })
         },
 
         // automate
@@ -98,11 +107,12 @@ export const Setting: React.FC<any> = () => {
             addSetting: ()=>setting.addAutomate({ brand: AutomateBrand, analyzer: AutomateAnalyser, departement: AutomateYear })
         }
     ]
-
     // before anything fetch data first
     React.useEffect(() => {
         if (Departements.length <= 0) setting.fetchDepartement();
+        if (VacationDays.length <= 0) setting.fetchHoliday();
         if (Congees.length <= 0) setting.fetchLeave();
+        if (Automates.length <= 0) setting.fetchAutomate();
     }, [])
 
     return (
@@ -140,10 +150,14 @@ export const Setting: React.FC<any> = () => {
                                 </thead>
 
                                 <tbody>{parameter.data.map((body: any) => <Tr key={body.name || body.conge || body.unite || body.jrname}>
+                                    {/* departement */}
                                     {body.name && <Td>{body.name}</Td>}
+                                    {/* congee */}
                                     {body.conge && <Td>{body.conge}</Td>}
-                                    {body.jrname && <Td>{body.jrname}</Td>}
                                     {body.duree && <Td>{body.duree}</Td>}
+                                    {/* holidays */}
+                                    {body.holiday && <Td>{body.holiday}</Td>}
+                                    
                                     {body.unite && <Td>{body.unite}</Td>}
                                     {body.marque && <Td>{body.marque}</Td>}
                                     {body.reference && <Td>{body.reference}</Td>}
