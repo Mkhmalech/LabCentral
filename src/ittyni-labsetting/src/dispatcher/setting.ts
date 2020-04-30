@@ -43,15 +43,18 @@ class Setting {
     fetchLeave = ()=>store.dispatch({
         type : SettingActions.LAB_LABO_SETTING_LIST_LEAVE,
         payload : {
-            query : `mutation {setting{listLeave(accountName:"${this.accountName}"){leave duration}}}`
+            query : `mutation{setting{listLeave(accountName:"${this.accountName}"){leave duration}}}`
         },
         path : 'labos'
     })
 
     // add Leave
-    addLeave = (leave : any)=>store.dispatch({
+    addLeave = ({leave, duration} : any)=>store.dispatch({
         type : SettingActions.LAB_LABO_SETTING_ADD_NEW_LEAVE,
-        
+        payload : {
+            query: `mutation{setting{addLeave(leave:{leave:"${leave}",duration:${duration},accountName:"${this.accountName}"})}}`
+        },
+        path : 'labos'
     })
 
     // add automate

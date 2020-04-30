@@ -80,7 +80,7 @@ export const Setting: React.FC<any> = () => {
         },
         // Holidays  
         {
-            title: "Ajouter Jours Ferie", headers: ["Jours Feries"], data: VacationDays, inputs: [
+            title: "Ajouter Jours Ferie", headers: ["Jours Feries", "de", "a"], data: VacationDays, inputs: [
                 { field: "Jour Ferie", type: "text", onChange: setVacationName },
                 { field: "date de debut", type: "date", onChange: setVacationFrom },
                 { field: "date de fin", type: "date", onChange: setVacationTo },
@@ -90,7 +90,7 @@ export const Setting: React.FC<any> = () => {
 
         // Leave
         {
-            title: "Ajouter Conge", headers: ["Conge", "duree", "unite"], data: Congees, inputs: [
+            title: "Ajouter Conge", headers: ["Conge", "duree"], data: Congees, inputs: [
                 { field: "congee", type: "text", onChange: setCongee },
                 { field: "duree du congee", type: "number", onChange: setCongeDuration }
             ],
@@ -104,7 +104,7 @@ export const Setting: React.FC<any> = () => {
                 { field: "analyseur", type: "text", onChange: setAutomateAnalyser },
                 { field: "date de fonction", type: "date", onChange: setAutomateYear },
             ],
-            addSetting: ()=>setting.addAutomate({ brand: AutomateBrand, analyzer: AutomateAnalyser, departement: AutomateYear })
+            addSetting: ()=>setting.addAutomate({ brand: AutomateBrand, analyzer: AutomateAnalyser, setupDate: AutomateYear })
         }
     ]
     // before anything fetch data first
@@ -152,16 +152,20 @@ export const Setting: React.FC<any> = () => {
                                 <tbody>{parameter.data.map((body: any) => <Tr key={body.name || body.conge || body.unite || body.jrname}>
                                     {/* departement */}
                                     {body.name && <Td>{body.name}</Td>}
+
                                     {/* congee */}
-                                    {body.conge && <Td>{body.conge}</Td>}
-                                    {body.duree && <Td>{body.duree}</Td>}
+                                    {body.leave && <Td>{body.leave}</Td>}
+                                    {body.duration && <Td>{body.duration}</Td>}
+
                                     {/* holidays */}
                                     {body.holiday && <Td>{body.holiday}</Td>}
+                                    {body.from && <Td>{new Date(body.from).toDateString()}</Td>}
+                                    {body.to && <Td>{new Date(body.to).toDateString()}</Td>}
                                     
-                                    {body.unite && <Td>{body.unite}</Td>}
-                                    {body.marque && <Td>{body.marque}</Td>}
-                                    {body.reference && <Td>{body.reference}</Td>}
-                                    {body.version && <Td>{body.version}</Td>}
+                                    {/* automate */}
+                                    {body.brand && <Td>{body.brand}</Td>}
+                                    {body.analyser && <Td>{body.analyser}</Td>}
+                                    {body.setupDate && <Td>{new Date(body.setupDate).toDateString()}</Td>}
                                 </Tr>)}</tbody>
                             </Table>
                         </div>
