@@ -25,10 +25,10 @@ export const settingReducer: Reducer = (state = {}, action: AnyAction) => {
       return { ...state };
 
     // automate
-    case SettingActions.LAB_LABO_SETTING_LIST_HOLIDAY_SUCCESS:
+    case SettingActions.LAB_LABO_SETTING_LIST_AUTOMATE_SUCCESS:
       return { ...state, automates: action.payload.setting.listAutomate };
 
-    case SettingActions.LAB_LABO_SETTING_ADD_NEW_HOLIDAY_SUCCESS:
+    case SettingActions.LAB_LABO_SETTING_ADD_NEW_AUTOMATE_SUCCESS:
       return { ...state };
     
     // return existing state

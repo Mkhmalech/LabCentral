@@ -34,7 +34,7 @@ class Setting {
     addHoliday = ({holiday, from, to} : any)=>store.dispatch({
         type : SettingActions.LAB_LABO_SETTING_ADD_NEW_HOLIDAY,
         payload : {
-            query : `mutation{setting{addHoliday(holiday:{holiday:"${holiday}",from:"${from}",to:"${to}",accountName:"${this.accountName}"})}}`
+            query : `mutation{setting{addHoliday(holiday:{holiday:"${holiday}",from:"${from.toString()}",to:"${to.toString()}",accountName:"${this.accountName}"})}}`
         },
         path : "labos"
     })
