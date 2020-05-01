@@ -43,6 +43,7 @@ export const Body = styled("div")`
 // footer wrapper
 export const Footer = styled("div")`
   background : rgb(0, 0, 0);
+  text--align: center;
   color : rgb(250,250,250);
   width: 100%;
 `;

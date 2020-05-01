@@ -7,7 +7,7 @@ export async function callApi(method: string, url: string, path: string, data?: 
       method,
       headers: {
         'Content-Type': 'application/json',
-        'Authorization' : 'Beer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1ZGMzZjJlODZlNmUzZTIxZDAyN2JlZDEiLCJlbWFpbCI6Im0ua2htYWxlY2hAZ21haWwuY29tIiwiaWF0IjoxNTg3Mzk2NDcwLCJleHAiOjE1ODc0MDAwNzB9.WQBcYT7H8aCI6VFtb_IIrdwgL2sVsYty5oZ9m2Sp7KY'
+        'Authorization' : `Beer ${localStorage.getItem('TTUID')}`
       },
       body: JSON.stringify(data)
     })
