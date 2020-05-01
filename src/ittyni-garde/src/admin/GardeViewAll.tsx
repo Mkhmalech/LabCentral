@@ -1,12 +1,16 @@
 import * as React from 'react';
 import { Table, Tr, Th, Td } from '../common/listStyle'
-import { Link } from 'react-router-dom';
-import { CreateNew } from './GardeCreateNew';
+import { Dropallback } from '../../../commons/DropAllBack';
+import { Shift } from '../controller/shift';
+import './gardeStyle.css';
+import { PopUp } from '../../../commons/PopUp';
 
+const shiftClass = new Shift();
 export const GardeViewAll = ({ shiftDate }: any) => {
-
     const [isOpen, openCloseModal] = React.useState(false)
-
+    const [startDate, updateStartDate] = React.useState<any>();
+    const [endDate, updateEndDate] = React.useState<any>();
+    const test = () => openCloseModal(!isOpen)
     const Parameters = [
         {
             title: "list de garde du mois 05-2020",
@@ -16,6 +20,54 @@ export const GardeViewAll = ({ shiftDate }: any) => {
     ]
 
     return (
+        <React.Fragment>
+             {/* {isOpen && <CreateNew close={() => openCloseModal(!isOpen)} shiftDate={shiftDate} />} */}
+             {isOpen && <Dropallback />}
+            {isOpen && <PopUp title="Ajouter Garde" canCancel canConfirm onCancel={() => test()} onClick={(e:any)=>shiftClass.getShiftDate('Impair')}>
+            <div className="form_wrapper">
+      <div className="form_container">
+      <div className="row clearfix">
+      <div className="col_half" style={{width:"100%"}}>
+            <div className="input_field">
+                <input type="text" name="nom"  placeholder="Recherche Par Filtrage personnel..."/>
+            </div>
+      </div>
+      </div>
+    <div className="row clearfix">
+        <div className="col_half" style={{marginBottom: "10px"}}>
+            <div className="input_field">
+                <input type="date" name="nom"  placeholder="*nom" />
+            </div>
+        </div>
+        <div className="col_half">
+           <div className="input_field">
+                <input type="date" name="prenom"  placeholder="* prenom" />
+            </div>
+        </div>
+    </div>  
+     
+      <div className="row clearfix">
+        <div className="col_half" style={{marginBottom: "10px"}}>
+      <div className="select" style={{width:"100%"}}>
+    <select id="slct" >
+    <option>Jours</option>
+    <option>Nuits</option>
+    </select>
+  </div>
+  </div>
+  <div className="col_half">
+  <div className="select" style={{width:"100%"}}>
+    <select id="slct" >
+    <option>Pair</option>
+    <option>Impair</option>
+    </select>
+    </div>
+      </div>
+  </div>
+      </div>
+      </div>
+            </PopUp>}
+       
         <div style={{width: "90%"}}>
             {Parameters.map((parameter: any) => (
                 <div key={parameter.title}>
@@ -36,8 +88,9 @@ export const GardeViewAll = ({ shiftDate }: any) => {
 
                 </div>
             ))}
-            {isOpen && <CreateNew close={() => openCloseModal(!isOpen)} shiftDate={shiftDate} />}
+           
         </div>
+        </React.Fragment>
     )
 }
 
