@@ -1,5 +1,5 @@
 {
   "name" : "ittyini-staff",
   "main" : "src/index",
-  "types" : "staff.d.ts"
+  "types" : "src/staff.d.ts"
 }

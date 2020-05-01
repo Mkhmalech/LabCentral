@@ -1,4 +1,3 @@
-import { Dispatch } from "redux";
 import { store } from '../../../index';
 import { StaffActions } from '../store/actions';
 
