@@ -1,7 +1,10 @@
 import { store } from '../../../index';
 import { StaffActions } from '../store/actions';
+import { SettingActions } from '../../../ittyni-labsetting/src/store/actions';
 
 class Staff {
+
+    private accountName : string = "Centrale du CHU Hassan II";
 
     constructor(){}
 
@@ -39,7 +42,18 @@ class Staff {
             },
             path : 'labos/staff'
         })
-    }
+    };
+    /**
+     * fetch departements to use
+     * in staff
+     */
+    fetchDepartement = ()=>store.dispatch({
+        type : SettingActions.LAB_LABO_SETTING_LIST_DEPARTEMENT,
+        payload : {
+            query : `mutation {setting{listDepartement(accountName:"${this.accountName}"){name}}}`
+        },
+        path : 'labos'
+    })
 }
 
 export const staff = new Staff();
