@@ -43,30 +43,24 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
 
   // departement 
   const [departementName, setDepartementName] = React.useState();
-  const [Departements, setDepartements] = React.useState([useSelector((state: any) => state.setting.departements)]);
-  const departements = useSelector((state: any) => state.setting.departements);
-  
+  const [depart, setDepart] = React.useState();
+  const departements: any[] = useSelector((state: any) => state.setting.departements) || [];
 
-
-
-  // Show and hide Input New Departement
-  const hiddenSetHidden = (event: React.MouseEvent) => {
-    event.preventDefault()
-    setHidden(!hidden)
+  // add new departement
+  const addNewDepartement = () => {
+    staff.addNewDepartement(departementName)
   }
-
   // Add new Employer
-  const createEmployer = (event: React.MouseEvent) => {
-    event.preventDefault()
+  const createEmployer = () => {
     console.log(formEmploi)
   }
+
 
   // before anything get departements from
   // api
   React.useEffect(() => {
-    if (Departements.length <= 0) staff.fetchDepartement()
-    setDepartements([...departements])
-  }, [Departements])
+    if (departements.length <= 0) staff.fetchDepartement()
+  }, [departements])
 
   return (
     <React.Fragment>
@@ -83,45 +77,37 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
           <div className="title_container">
             <h3>* Tous les chams sont requis</h3>
           </div>
-          <form onSubmit={(event: any) => createEmployer(event)}>
-            <div className="row clearfix">
-              <div className="col_half">
-                <label>Nom</label>
-                <div className="input_field">
-                  <input type="text" name="nom" value={nom} placeholder="* nom" onChange={(e: any) => onChangeE(e)} />
-                </div>
-              </div>
-              <div className="col_half">
-                <label>Prenom</label>
-                <div className="input_field">
-                  <input type="text" name="prenom" value={prenom} placeholder="* prenom" onChange={(e: any) => onChangeE(e)} />
+          <div className="row clearfix">
+            <AddPersonalInput label="nom" onChange={(e)=>setLastName(e.target.value)}/>
+            <AddPersonalInput label="prenom" onChange={(e)=>setFirstName(e.target.value)}/>
+          </div>
+          <div className="row clearfix">
+            <AddPersonalInput label="PPR" />
+            <div className="col_half">
+              <label>Unite</label>
+              {/* <div className="input_field">
+            <input type="text" name="unite" placeholder="* Unite"/>
+          </div> */}
+              <div className="test">
+                <FormFieldSelect
+                  listToChose={['-', ...departements.map(dep => dep.name)]} name="unite"
+                  onChange={(e: any) => setDepart(e.target.value)}
+                />
+                <div style={{ width: "30%" }}>
+                  {hidden && <button className="nouv_unite_btn" onClick={e => addNewDepartement()}>Confirmer</button>}
+                  {!hidden && <button className="nouv_unite_btn" onClick={e => setHidden(!hidden)}>+ Nouvelle</button>}
                 </div>
               </div>
             </div>
-            <div className="row clearfix">
-              <div className="col_half">
-                <label>PPR</label>
-                <div className="input_field">
-                  <input type="number" name="ppr" value={ppr} placeholder="* 0" onChange={(e: any) => onChangeE(e)} />
-                </div>
-              </div>
-
+          </div>
+          <div className="row clearfix">
+            <div className="col_half">
+              <label>Civilite</label>
+              <FormFieldSelect listToChose={["-", "Mr", "Mme"]} name="sex" value={sex} onChange={(e: any) => onChangeE(e)} width="100%" />
             </div>
-            <div className="row clearfix">
-              <div className="col_half">
-                <label>Civilite</label>
-                {/* <FormFieldSelect listToChose={["-","Mr", "Mme"]} onChange={(e)=>add_employerCivility(e.target.value)} width="100%" /> */}
-                <FormFieldSelect listToChose={["-", "Mr", "Mme"]} name="sex" value={sex} onChange={(e: any) => onChangeE(e)} width="100%" />
-              </div>
-              {hidden && <div className="col_half">
-                <label>Nouvelle Unite</label>
-                <div className="input_field">
-                  <input type="text" name="nunite" placeholder="* noveau Unite" onChange={e => { setDepartement(e.target.value) }} />
-                </div>
-              </div>}
-            </div>
-            <input className="button" type="submit" value="Sumbit" />
-          </form>
+            {hidden && <AddPersonalInput label="Nouvelle Unite" onChange={(e: any) => setDepartementName(e.target.value)}/>}
+          </div>
+          <input className="button" type="submit" value="Sumbit" onClick={(e)=>createEmployer()}/>
         </div>
       </div>
     </React.Fragment>
@@ -146,18 +132,17 @@ const FormFieldSelect: React.FC<FormFieldSelectProps> = ({ listToChose, onChange
   </div>
 )
 
-
-  // departement
-  // < div className = "col_half" >
-  //   <label>Unite</label>
-  //   <div className="test">
-  //     <FormFieldSelect
-  //       listToChose={Departements} name="unite" value={unite} onChange={(e: any) => onChangeE(e)}
-  //       onClick={(e) => showDepartement()}
-  //     />
-  //     <div style={{ width: "30%" }}>
-  //       {hidden && <button className="nouv_unite_btn" onClick={event => { } /* addNewDepartement(event) */}>Confirmer</button>}
-  //       {!hidden && <button className="nouv_unite_btn" onClick={event => hiddenSetHidden(event)}>+ Nouvelle</button>}
-  //     </div>
-  //   </div>
-  // </div > 
+interface IAddPersonalInput {
+  label: string
+  onChange?: (e: any) => void
+}
+const AddPersonalInput: React.FC<IAddPersonalInput> = ({ label, onChange }) => {
+  return (
+    <div className="col_half">
+      <label>{label}</label>
+      <div className="input_field">
+        <input type="text" name="prenom" placeholder={label} onChange={onChange} />
+      </div>
+    </div>
+  )
+}
