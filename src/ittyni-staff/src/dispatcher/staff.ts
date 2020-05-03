@@ -26,19 +26,14 @@ class Staff {
   /**
    * Add new employers
    */
-  addNewEmployers = (employer: Employer) => {
+  addNewEmployers = (employer: any) => {
     store.dispatch({
       type: StaffActions.ADD_EMPLOYER,
       payload: {
-        query: `mutation{employerAddNew(employer : {
-                      civility : "Mr",
-                      addedBy : "weiuyeuiryueiw234234",
-                      firstName : "mohammed"
-                      lastName : "khmalech"
-                      ppr : 1432343
-                      departementId : "biochimie"
-                    })
-                  }`,
+        query: `mutation{employerAddNew(employer :{
+          civility : "${employer.civility}"  firstName : "${employer.firstName}"
+          lastName : "${employer.lastName}"  ppr : ${employer.ppr}
+          departementName : "${employer.departementName}" accountName: "${this.accountName}"})}`,
       },
       path: "labos/staff",
     });

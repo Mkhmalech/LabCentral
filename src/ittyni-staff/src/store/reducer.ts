@@ -7,8 +7,8 @@ const initialState : LabStaffState = {
 export const staffReducer = (state=initialState, action: AnyAction) =>{
    const {payload, type} = action;
     switch (type) {
-        case "SUCCESS":
-            console.log("SUCCESS")
+        case StaffActions.ADD_EMPLOYER_SUCCESS:
+            console.log(payload)
             return {
             ...state
             // employer: payload

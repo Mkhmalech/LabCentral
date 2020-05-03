@@ -13,8 +13,8 @@ function* StaffFetchAll({path, payload} : AnyAction){
     yield tryFetching(
         path,
         payload,
-        "ERROR",
-        "SUCCESS"
+        StaffActions.ADD_EMPLOYER_ERROR,
+        StaffActions.ADD_EMPLOYER_SUCCESS
     )
 }
 //watcher func dispatcher

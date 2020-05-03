@@ -2,35 +2,13 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import './style.css'
 import { TitleTablePararameters } from '../../../ittyni-labsetting/src/common/settingStyle';
-import { staff } from '../controller/staff';
+import { staff } from '../dispatcher/staff';
 import { useSelector } from 'react-redux';
 
 export const StaffAddEmployer: React.FC<any> = ({ username }) => {
 
   // create fileds hook
-  const [departement, setDepartement] = React.useState('')
-
-
-
-  const [formEmploi, addEmploy] = React.useState({
-    nom: '',
-    prenom: '',
-    unite: '',
-    ppr: '',
-    sex: ''
-  })
-
-  const {
-    nom,
-    prenom,
-    unite,
-    ppr,
-    sex
-  } = formEmploi
-
-
-
-  const onChangeE = (e: any) => addEmploy({ ...formEmploi, [e.target.name]: e.target.value })
+  
 
   // hide & show departement
   const [hidden, setHidden] = React.useState(false);
@@ -39,11 +17,11 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
   const [firstName, setFirstName] = React.useState();
   const [lastName, setLastName] = React.useState();
   const [civility, setCivility] = React.useState();
+  const [unite, setUnite] = React.useState('')
   const [PPR, setPPR] = React.useState();
 
   // departement 
   const [departementName, setDepartementName] = React.useState();
-  const [depart, setDepart] = React.useState();
   const departements: any[] = useSelector((state: any) => state.setting.departements) || [];
 
   // add new departement
@@ -52,7 +30,15 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
   }
   // Add new Employer
   const createEmployer = () => {
-    console.log(formEmploi)
+    const employer = {
+      civility: civility,
+      firstName : firstName,
+      lastName : lastName,
+      ppr : Number(PPR),
+      departementName : unite,
+    }
+    console.log(employer)
+    staff.addNewEmployers(employer)
   }
 
 
@@ -82,7 +68,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
             <AddPersonalInput label="prenom" onChange={(e)=>setFirstName(e.target.value)}/>
           </div>
           <div className="row clearfix">
-            <AddPersonalInput label="PPR" />
+            <AddPersonalInput label="PPR" onChange={(e)=>setPPR(e.target.value)} />
             <div className="col_half">
               <label>Unite</label>
               {/* <div className="input_field">
@@ -90,8 +76,8 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
           </div> */}
               <div className="test">
                 <FormFieldSelect
-                  listToChose={['-', ...departements.map(dep => dep.name)]} name="unite"
-                  onChange={(e: any) => setDepart(e.target.value)}
+                  listToChose={['-', ...departements.map(dep => dep.name)]} 
+                  onChange={(e: any) => setUnite(e.target.value)}
                 />
                 <div style={{ width: "30%" }}>
                   {hidden && <button className="nouv_unite_btn" onClick={e => addNewDepartement()}>Confirmer</button>}
@@ -103,7 +89,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
           <div className="row clearfix">
             <div className="col_half">
               <label>Civilite</label>
-              <FormFieldSelect listToChose={["-", "Mr", "Mme"]} name="sex" value={sex} onChange={(e: any) => onChangeE(e)} width="100%" />
+              <FormFieldSelect listToChose={["-", "Mr", "Mme"]} onChange={(e: any) => setCivility(e.target.value)} width="100%" />
             </div>
             {hidden && <AddPersonalInput label="Nouvelle Unite" onChange={(e: any) => setDepartementName(e.target.value)}/>}
           </div>
