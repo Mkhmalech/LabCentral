@@ -10,7 +10,7 @@ import { AuthSaga } from '../authentification-redux-lib/index';
 
 // personal module
 // import { personalReducer } from "../labpersonal-ittyni/src/store/reducer";
-import { staffReducer } from '../ittyni-staff/src/store/reducers';
+import { staffReducer } from '../ittyni-staff/src/store/reducer';
 import { LabLaboStaffSaga } from '../ittyni-staff/src/store/saga';
 import { shiftReducer } from '../ittyni-garde/src/store/reducer';
 

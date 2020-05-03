@@ -112,7 +112,7 @@ export const Setting: React.FC<any> = () => {
         if (VacationDays.length <= 0) setting.fetchHoliday();
         if (Congees.length <= 0) setting.fetchLeave();
         if (Automates.length <= 0) setting.fetchAutomate();
-    }, [])
+    }, [Departements, VacationDays, Congees, Automates])
 
     return (
         <React.Fragment>

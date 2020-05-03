@@ -2,8 +2,8 @@ type EmployerDepartement  = string
 type EmployerPPR = number
 
 interface Employer extends Person{
-  departement : EmployerDepartement
-  PPR ?  : EmployerPPR 
+  departementId : EmployerDepartement
+  ppr ?  : EmployerPPR 
 }
 
 interface LabStaffState {
