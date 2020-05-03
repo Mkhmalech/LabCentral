@@ -7,19 +7,11 @@ class Staff {
 
   constructor() {}
 
-  test = () =>
+  listStaff = () =>
     store.dispatch({
-      type: StaffActions.ADD_EMPLOYER,
+      type: StaffActions.LIST_ALL_EMPLOYERS,
       payload: {
-        query: `mutation{employerAddNew(employer : {
-                  civility : "Mr",
-                  addedBy : "weiuyeuiryueiw234234",
-                  firstName : "mohammed"
-                  lastName : "khmalech"
-                  ppr : 1432343
-                  departementId : "biochimie"
-                })
-              }`,
+        query: `query{employerListAll(accountName:"${this.accountName}"){firstName lastName ppr}}`,
       },
       path: "labos/staff",
     });

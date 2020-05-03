@@ -2,12 +2,19 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import {Table, Tr, Th, Td} from './listStyle';
 import { TitleTablePararameters } from '../../../ittyni-labsetting/src/common/settingStyle';
+import { staff } from '../dispatcher/staff';
+import { useSelector } from 'react-redux';
 
 export const StaffListALL: React.FC<any> = () => {
 
     const [dataSearch, setdataSearch] = React.useState({
         search: ''
     })
+
+    // staff list 
+    const staffState = useSelector((state:any)=>state.staff.staff) || [];
+
+
 
     const { search } = dataSearch;
 
@@ -47,7 +54,7 @@ export const StaffListALL: React.FC<any> = () => {
     }
 
     let Employes;
-    Employes = dataEmployes.map(em => (
+    Employes = staffState.map((em:any) => (
         <Tr key={em.id}>
             <Td>
                 {em.firstName}
@@ -56,16 +63,20 @@ export const StaffListALL: React.FC<any> = () => {
                 {em.lastName}
             </Td>
             <Td>
-                {12337637}
+                {em.ppr}
             </Td>
             <Td>
-                {em.departement}
+                {em.departementId}
             </Td>
         </Tr>
     ))
 
        const staffTbody = <tbody>{Employes}</tbody> 
 
+    React.useEffect(()=>{
+        if(staffState.length <= 0 ) staff.listStaff();
+    },[staffState])
+    
     return(
         <div style={{width: "90%"}}>
             <TitleTablePararameters>

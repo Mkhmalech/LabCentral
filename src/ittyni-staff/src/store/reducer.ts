@@ -8,14 +8,13 @@ export const staffReducer = (state=initialState, action: AnyAction) =>{
    const {payload, type} = action;
     switch (type) {
         case StaffActions.ADD_EMPLOYER_SUCCESS:
-            console.log(payload)
             return {
             ...state
             // employer: payload
             };
-        case "ERROR" : 
-            console.log("ERROR")
-            return { ...state };
+        case StaffActions.LIST_ALL_EMPLOYERS_SUCCESS : 
+            console.log(payload)
+            return { ...state, staff : payload.employerListAll };
         default:
             return {...state};
     }

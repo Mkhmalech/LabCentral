@@ -9,7 +9,7 @@ import { StaffActions } from './actions';
 /**
  * labo fetch details
  */
-function* StaffFetchAll({path, payload} : AnyAction){
+function* StaffAddNew({path, payload} : AnyAction){
     yield tryFetching(
         path,
         payload,
@@ -17,11 +17,23 @@ function* StaffFetchAll({path, payload} : AnyAction){
         StaffActions.ADD_EMPLOYER_SUCCESS
     )
 }
+/**
+ * labo fetch details
+ */
+function* StaffFetchAll({path, payload} : AnyAction){
+    yield tryFetching(
+        path,
+        payload,
+        StaffActions.LIST_ALL_EMPLOYERS_ERROR,
+        StaffActions.LIST_ALL_EMPLOYERS_SUCCESS
+    )
+}
 //watcher func dispatcher
 function* watchLabLaboStaff(){
 
     // fetch tests form server 
-    yield takeEvery(StaffActions.ADD_EMPLOYER, StaffFetchAll)
+    yield takeEvery(StaffActions.ADD_EMPLOYER, StaffAddNew)
+    yield takeEvery(StaffActions.LIST_ALL_EMPLOYERS, StaffFetchAll)
 }
 
 export function* LabLaboStaffSaga(){
