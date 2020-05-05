@@ -8,7 +8,7 @@ export const Table = styled('table')`
     margin-top: 50px;
 `
 
-export const Tr = styled('tr')`
+export const Tr = styled.tr`
     border-bottom: 1px solid #ccc;
 `
 

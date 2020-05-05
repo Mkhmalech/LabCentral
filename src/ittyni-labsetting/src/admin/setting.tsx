@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Table, Tr, Th, Td } from '../common/listStyle'
-import { PopUp } from './popUps'
+import {Dropallback} from '../../../commons/DropAllBack'
+import { PopUp } from '../../../commons/PopUp';
 import {
     Container,
     ContainerNavigation,
@@ -128,6 +129,7 @@ export const Setting: React.FC<any> = () => {
                     {parameter.title === tab &&
                         <div key={parameter.title}>
                             {/* add parameter */}
+                            {add && <Dropallback/> }
                             {add &&
                                 <ParametersModalCreateNew
                                     title={parameter.title} showHideModal={() => addCreateParams(!add)}

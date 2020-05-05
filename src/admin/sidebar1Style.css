@@ -98,8 +98,7 @@ input[type=checkbox] {
     top: 22px;
     left: 15px;
     height: 22px;
-    width: 22px;
-    display: none;
+    width: 20px;
 }
 .spinner {
     transition: all 0.3s;
@@ -115,42 +114,64 @@ input[type=checkbox] {
     position: relative;
     float: left;
     margin-top: 3px;
+    opacity: 0;
 }
 .diagonal.part-1 {
-    position: relative;
+
     transition: all 0.3s;
     box-sizing: border-box;
-    float: left;
+    transform: rotate(135deg);
+    margin-top: 9px;
 }
 .diagonal.part-2 {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    transform: rotate(-135deg);
+    margin-top: 9px;
+}
+input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
     transition: all 0.3s;
     box-sizing: border-box;
     position: relative;
     float: left;
     margin-top: 3px;
-}
-input[type=checkbox]:checked ~ .sidebarIconToggle > .horizontal {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    opacity: 0;
+    OPACITY: inherit;
 }
 input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-1 {
+    position: relative;
     transition: all 0.3s;
     box-sizing: border-box;
-    transform: rotate(135deg);
-    margin-top: 8px;
+    float: left;
+    transform: rotate(0deg);
+    margin-top: 0px;
+   
 }
 input[type=checkbox]:checked ~ .sidebarIconToggle > .diagonal.part-2 {
     transition: all 0.3s;
     box-sizing: border-box;
-    transform: rotate(-135deg);
-    margin-top: -9px;
+    position: relative;
+    float: left;
+    margin-top: 3px;
+    transform: rotate(0deg);
 }
 
-@media (max-width: 700px) {
+.logoSideBar{
+    float: left;
+    color: #FFF;
+    padding: 1.4em;
+    margin-left: 30px;
+    margin-bottom: 0px;
+}
+
+@media(max-width: 700px) {
     .logoSideBar{
-        margin-left: 30px;
+        
+        padding: 2.5em;
+        font-size: 10px; 
     }
+}
+@media (max-width: 700px) {
+
 
     .sidebarIconToggle{
         display: block;

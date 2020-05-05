@@ -34,9 +34,6 @@ export const LinkNavigation = styled.a`
     transition: .5s;
     cursor: pointer;
     padding: 1em;
-    :hover{
-        background:#117a8b;
-    }
 `
 
 export const ContainerSearch = styled.div`
