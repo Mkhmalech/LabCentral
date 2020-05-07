@@ -66,7 +66,7 @@ export const StaffListALL: React.FC<any> = () => {
                 {em.ppr}
             </Td>
             <Td>
-                {em.departementId}
+                {em.departement.name}
             </Td>
         </Tr>
     ))
