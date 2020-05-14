@@ -18,6 +18,7 @@ import { shiftReducer } from '../ittyni-garde/src/store/reducer';
 // setting imports 
 import { settingReducer } from '../ittyni-labsetting/src/store/reducer';
 import { LabLaboSettingSaga } from '../ittyni-labsetting/src/store/saga';
+import { LabLaboShiftSaga } from "../ittyni-garde/src/store/saga";
 
 
 export const createRootReducer = (history: History) =>
@@ -35,6 +36,8 @@ export function* rootSaga() {
     fork(AuthSaga),
     //  Staff
     fork(LabLaboStaffSaga),
+    //  Staff
+    fork(LabLaboShiftSaga),
     // setting saga
     fork(LabLaboSettingSaga)
     //  Gards

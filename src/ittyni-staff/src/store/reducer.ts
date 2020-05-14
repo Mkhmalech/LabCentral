@@ -13,7 +13,6 @@ export const staffReducer = (state=initialState, action: AnyAction) =>{
             // employer: payload
             };
         case StaffActions.LIST_ALL_EMPLOYERS_SUCCESS : 
-            console.log(payload)
             return { ...state, staff : payload.employerListAll };
         default:
             return {...state};

@@ -1,19 +1,26 @@
 import * as React from 'react';
 import { Table, Tr, Th, Td } from '../common/listStyle'
-import { Link } from 'react-router-dom';
 import { CreateNew } from './GardeCreateNew';
-
+import { useSelector } from 'react-redux';
+import shiftDispatcher from '../dispatcher/shift'
 export const GardeViewAll = ({ shiftDate }: any) => {
 
-    const [isOpen, openCloseModal] = React.useState(false)
+    const [isOpen, openCloseModal] = React.useState(false);
+
+    // get shifts State
+    const shifts = useSelector((state:any)=>state.garde.shifts) || [];
 
     const Parameters = [
         {
             title: "list de garde du mois 05-2020",
             headers: ["Nom", "Prenom", "unite", "Les Jours de Garde", "J/N", "E/S"],
-            data: ["khamlech", "Mohammed", "Biochimie", "1 - 3 - 5 - 7", "J", <div><Delete /> - <Modify /></div>]
+            data: shifts
         }
     ]
+
+    React.useEffect(()=>{
+        if(shifts.length<=0) shiftDispatcher.fetchShifts()
+    },[shifts])
 
     return (
         <div style={{width: "90%"}}>
@@ -22,14 +29,25 @@ export const GardeViewAll = ({ shiftDate }: any) => {
                     <h1>{parameter.title}</h1>
                     <a onClick={(e) => openCloseModal(!isOpen)}>Creer Nouveau List de Gardes</a>
                     <hr />
-
+                    <button>biochimie</button>
+                    <button>bacteriologie</button>
+                    <button>Hemtologie</button>
                     <Table>
                         <thead>
                             <Tr >
-                                {parameter.headers.map((header: any) => <Th key={header}>{header}</Th>)}
+                                <Th>mois 6</Th>
+                                <Th>Jour</Th>
+                                <Th>Nuit</Th>
                             </Tr>
                         </thead>
-                        <tbody><Tr>{parameter.data.map((body: any) => <Td>{body}</Td>)}</Tr></tbody>
+                        <tbody>
+                            {shifts.map((shift:any)=>
+                                <Tr>
+                                    <Td>1</Td>
+                                    <Td>{shift.employer.firstName} {shift.employer.lastName}</Td>
+                                </Tr>
+                            )}
+                        </tbody>
                     </Table>
 
                     <hr />

@@ -11,7 +11,7 @@ class Staff {
     store.dispatch({
       type: StaffActions.LIST_ALL_EMPLOYERS,
       payload: {
-        query: `query{employerListAll(accountName:"${this.accountName}"){firstName lastName ppr departement{name}}}`,
+        query: `query{employerListAll(accountName:"${this.accountName}"){id firstName lastName ppr departement{_id name}}}`,
       },
       path: "labos/staff",
     });
