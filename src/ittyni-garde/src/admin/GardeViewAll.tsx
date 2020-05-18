@@ -3,6 +3,7 @@ import { Table, Tr, Th, Td } from '../common/listStyle'
 import { CreateNew } from './GardeCreateNew';
 import { useSelector } from 'react-redux';
 import shiftDispatcher from '../dispatcher/shift'
+import shift from '../dispatcher/shift';
 export const GardeViewAll = ({ shiftDate }: any) => {
 
     const [isOpen, openCloseModal] = React.useState(false);
@@ -32,6 +33,7 @@ export const GardeViewAll = ({ shiftDate }: any) => {
                     <button>biochimie</button>
                     <button>bacteriologie</button>
                     <button>Hemtologie</button>
+                    <a href={shift.getXlsFile()} download={'shifts.xls'}>export</a>
                     <Table>
                         <thead>
                             <Tr >
