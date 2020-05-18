@@ -406,6 +406,18 @@ collapse;table-layout:fixed;width:439pt'>
         <td class=xl69></td>
         <td class=xl72></td>
      </tr>`
+const bodyXLShifts = () => {
+  let body = ''
+  for (let i = 0; i < 31; i++) {
+      body += `<tr height=20 style='height:15.0pt'>
+      <td height=20 class=xl74 style='height:15.0pt'>L</td>
+      <td class=xl75>7/${i+1}/2019</td>
+      <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
+      <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:none'>G;H;I</td>
+   </tr>`    
+  }
+  return body;
+}
 const generateXLShift = `
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"
    xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
@@ -421,218 +433,7 @@ ${headerXLShift}
          <td colspan=2 class=xl82 style='border-right:.5pt solid black;border-left:none'>NUIT</td>
       </tr>
       <!-- start table body boucler -->
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>L</td>
-         <td class=xl75>7/1/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>M</td>
-         <td class=xl75>7/2/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>M</td>
-         <td class=xl75>7/3/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>J</td>
-         <td class=xl75>7/4/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>V</td>
-         <td class=xl75>7/5/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl76 style='height:15.0pt;border-top:none'>S</td>
-         <td class=xl75>7/6/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl76 style='height:15.0pt;border-top:none'>D</td>
-         <td class=xl75>7/7/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>L</td>
-         <td class=xl75>7/8/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>M</td>
-         <td class=xl75>7/9/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>M</td>
-         <td class=xl75>7/10/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>J</td>
-         <td class=xl75>7/11/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>V</td>
-         <td class=xl75>7/12/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl76 style='height:15.0pt;border-top:none'>S</td>
-         <td class=xl75>7/13/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl76 style='height:15.0pt;border-top:none'>D</td>
-         <td class=xl75>7/14/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>L</td>
-         <td class=xl75>7/15/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>M</td>
-         <td class=xl75>7/16/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>M</td>
-         <td class=xl75>7/17/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>J</td>
-         <td class=xl75>7/18/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>V</td>
-         <td class=xl75>7/19/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl76 style='height:15.0pt;border-top:none'>S</td>
-         <td class=xl75>7/20/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl76 style='height:15.0pt;border-top:none'>D</td>
-         <td class=xl75>7/21/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>L</td>
-         <td class=xl75>7/22/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>M</td>
-         <td class=xl75>7/23/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>M</td>
-         <td class=xl75>7/24/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>J</td>
-         <td class=xl75>7/25/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>V</td>
-         <td class=xl75>7/26/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl76 style='height:15.0pt;border-top:none'>S</td>
-         <td class=xl75>7/27/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl76 style='height:15.0pt;border-top:none'>D</td>
-         <td class=xl75>7/28/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>L</td>
-         <td class=xl75>7/29/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:
-  none'>G;H;I</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>M</td>
-         <td class=xl75>7/30/2019</td>
-         <td colspan=2 class=xl88 style='border-right:.5pt solid black'>D;E;F</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:none'>J;K;L</td>
-      </tr>
-      <tr height=20 style='height:15.0pt'>
-         <td height=20 class=xl74 style='height:15.0pt'>M</td>
-         <td class=xl75>7/31/2019</td>
-         <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-         <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left: none'>G;H;I</td>
-      </tr>
+      ${bodyXLShifts()}
       ${FooterXLShift}
    </table>
 
