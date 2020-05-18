@@ -17,8 +17,10 @@ LaboShiftState
 {}
 
 export const AdminLayout : React.FC<LayoutInterface> = () => {
+
+  const isAuth = useSelector((state:any)=>state.auth.login.isAuth) || false;
   
-  return (
+  return (isAuth &&
     <Wrapper.Container>
       {/**
       header goes here
@@ -78,6 +80,6 @@ export const AdminLayout : React.FC<LayoutInterface> = () => {
       </Wrapper.Footer>
       {/* end of admin layout Container */}
     </Wrapper.Container>
-  );
+  ) || (<Redirect to="/auth/login" />);
 };
 
