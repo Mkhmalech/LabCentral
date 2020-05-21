@@ -19,6 +19,7 @@ export const GardeViewAll = ({ shiftDate }: any) => {
 
     // selected month
     const [month, setMonth] = React.useState<string>(`${actualDate.getFullYear()}-0${actualDate.getMonth() + 1}`);
+
     // modal controll
     const [isOpen, openCloseModal] = React.useState(false);
     const [isOpenUp, openCloseModaUp] = React.useState(false);
@@ -28,6 +29,7 @@ export const GardeViewAll = ({ shiftDate }: any) => {
     const updateTable = () =>{
         setTimeout(()=>shiftDispatcher.getMonthShifts(month, 'Biochimie'), 1000);
     }
+    // paramters
     const Parameters = [
         {
             title: "list de garde du",
@@ -36,6 +38,7 @@ export const GardeViewAll = ({ shiftDate }: any) => {
         }
     ]
 
+    // table body
     var Listdata = (
         <tbody>
             {dataform && <>{
@@ -110,7 +113,7 @@ export const GardeViewAll = ({ shiftDate }: any) => {
                             </Filtration>
 
                             <All>
-                                <a href={shiftDispatcher.getXlsFile()} download={`${month}.xls`}>Export</a>
+                                <a href={shiftDispatcher.getXlsFile(dataform)} download={`${month}.xls`}>Export</a>
                             </All>
                         </FiltrationContainer>
 

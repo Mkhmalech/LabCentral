@@ -2,6 +2,7 @@ import { store } from "../../../index";
 import { ShiftActions } from "../store/actions";
 import moment from "moment";
 import "moment/locale/fr";
+moment.locale('fr');
 export class Shift {
   private accountName: string = "Centrale du CHU Hassan II";
 
@@ -46,8 +47,8 @@ export class Shift {
       path: "labos/staff",
     });
   // get file xls url
-  getXlsFile = () => {
-    const myBlob = new Blob([generateXLShift]);
+  getXlsFile = (header: any) => {
+    const myBlob = new Blob([generateXLShift(header)]);
     return window.URL.createObjectURL(myBlob);
   };
   getMonthShifts = (month : string, departement : string) => store.dispatch({
@@ -59,13 +60,13 @@ export class Shift {
 
 // Generate file actions
 const FooterXLShift = `<tr height=15 style='height:14.4pt'>
-<td height=19 colspan=6 style='height:14.4pt;mso-ignore:colspan'></td>
-</tr>
-<tr height=19 style='height:14.4pt'>
-<td height=19 colspan=2 style='height:14.4pt;mso-ignore:colspan'></td>
-<td class=xl77>Chef de service</td>
-<td></td>
-<td colspan=2 class=xl90>Directeur de l’hopital</td>
+  <td height=19 colspan=6 style='height:14.4pt;mso-ignore:colspan'></td>
+  </tr>
+  <tr height=19 style='height:14.4pt'>
+  <td height=19 colspan=2 style='height:14.4pt;mso-ignore:colspan'></td>
+  <td class=xl77>Chef de service</td>
+  <td></td>
+  <td colspan=2 class=xl90>Directeur de hopital</td>
 </tr>`;
 const headerXLShift = `<head>
 <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
@@ -329,10 +330,18 @@ border-left:none;}
 {mso-style-parent:style0;
 font-weight:700;
 text-align:center;}
-
+.xl91 {
+  mso-style-parent: style0;
+  font-size: 9.0pt;
+  mso-number-format: "Short Date";
+  text-align: center;
+  border: .5pt solid windowtext;
+  background: yellow;
+  mso-pattern: black none;
+}
 </style>
 </head>`;
-const tableHeaderXLShift = `<table border=0 cellpadding=0 cellspacing=0 width=585 style='border-collapse:
+const tableHeaderXLShift= (dataform : any) => `<table border=0 cellpadding=0 cellspacing=0 width=585 style='border-collapse:
 collapse;table-layout:fixed;width:439pt'>
      <col width=41 style='mso-width-source:userset;mso-width-alt:1450;width:31pt'>
      <col width=64 style='width:48pt'>
@@ -377,7 +386,7 @@ collapse;table-layout:fixed;width:439pt'>
      <tr height=21 style='height:15.6pt'>
         <td height=21 class=xl65 style='height:15.6pt'></td>
         <td class=xl67>Fes</td>
-        <td class=xl68>5/16/2020</td>
+        <td class=xl68>${moment().format('LL')}</td>
         <td class=xl66></td>
         <td class=xl66></td>
         <td class=xl65></td>
@@ -385,7 +394,7 @@ collapse;table-layout:fixed;width:439pt'>
      <tr height=20 style='height:15.0pt'>
         <td height=24 class=xl69 style='height:18.0pt'></td>
         <td class=xl70>Service</td>
-        <td class=xl71>Laboratoire</td>
+        <td class=xl71>${dataform ? dataform.departement : 'Laboratoire'}</td>
         <td class=xl69></td>
         <td class=xl69></td>
         <td class=xl72></td>
@@ -393,7 +402,7 @@ collapse;table-layout:fixed;width:439pt'>
      <tr height=20 style='height:15.0pt'>
         <td height=24 class=xl69 style='height:18.0pt'></td>
         <td class=xl70>Année</td>
-        <td class=xl71>2019</td>
+        <td class=xl71>${dataform ? dataform.year : moment().format('YYYY')}</td>
         <td class=xl69></td>
         <td class=xl69></td>
         <td class=xl72></td>
@@ -401,7 +410,7 @@ collapse;table-layout:fixed;width:439pt'>
      <tr height=20 style='height:15.0pt'>
         <td height=24 class=xl69 style='height:18.0pt'></td>
         <td class=xl70>MOIS</td>
-        <td class=xl71>JUILLET</td>
+        <td class=xl71>${dataform ? moment(dataform.year+'-'+dataform.month, 'YYYY-MM').format('MMMM').toUpperCase() : moment().format('MM')}</td>
         <td class=xl69></td>
         <td class=xl69></td>
         <td class=xl72></td>
@@ -414,26 +423,38 @@ collapse;table-layout:fixed;width:439pt'>
         <td class=xl69></td>
         <td class=xl72></td>
      </tr>`;
-const bodyXLShifts = () => {
+const bodyXLShifts = (dataform : any) => {
   let body = "";
-  for (let i = 0; i < 31; i++) {
-    body += `<tr height=20 style='height:15.0pt'>
-      <td height=20 class=xl74 style='height:15.0pt'>L</td>
-      <td class=xl75>7/${i + 1}/2019</td>
-      <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
-      <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:none'>G;H;I</td>
-   </tr>`;
+  if(dataform){
+    dataform.days.map((day:any)=>{
+      body += `<tr height=20 style='height:15.0pt'>
+        <td height=20 class=${day.dayName == 'SA' || day.dayName == 'DI' ? 'xl91':'xl74'} style='height:15.0pt'>${day.dayName}</td>
+        <td class=xl75>${moment(day.date,'YYYY-MM-DD').format('LL')}</td>
+        <td colspan=2 class=xl84 style='border-right:.5pt solid black'>${day.dayEmployer.firstName} ${day.dayEmployer.lastName}</td>
+        <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:none'>${day.nightEmployer.firstName} ${day.nightEmployer.lastName}</td>
+     </tr>`;
+    })
+  } else {
+    for (let i = 0; i < 31; i++) {
+      body += `<tr height=20 style='height:15.0pt'>
+        <td height=20 class=xl74 style='height:15.0pt'>L</td>
+        <td class=xl75>7/${i + 1}/2019</td>
+        <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
+        <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:none'>G;H;I</td>
+     </tr>`;
+    }
   }
+  
   return body;
 };
-const generateXLShift = `
+const generateXLShift = (dataform : any) => `
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"
    xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
 
    ${headerXLShift}
 
    <body link=blue vlink=purple>
-         ${tableHeaderXLShift}
+         ${tableHeaderXLShift(dataform)}
          <!-- table header -->
          <tr height=22 style='height:16.2pt'>
             <td colspan=2 height=22 class=xl78 style='border-right:.5pt solid black;height:16.2pt'>DATE</td>
@@ -441,7 +462,7 @@ const generateXLShift = `
             <td colspan=2 class=xl82 style='border-right:.5pt solid black;border-left:none'>NUIT</td>
          </tr>
          <!-- start table body boucler -->
-         ${bodyXLShifts()}
+         ${bodyXLShifts(dataform)}
          ${FooterXLShift}
       </table>
 
