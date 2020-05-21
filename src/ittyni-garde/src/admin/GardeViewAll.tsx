@@ -1,65 +1,194 @@
 import * as React from 'react';
-import { Table, Tr, Th, Td } from '../common/listStyle'
-import { CreateNew } from './GardeCreateNew';
+import { Table, Tr, Th, Td, FiltrationContainer, Filtration, All, Button, But } from '../common/listStyle'
 import { useSelector } from 'react-redux';
 import shiftDispatcher from '../dispatcher/shift'
-import shift from '../dispatcher/shift';
+import { CreateNew } from './GardeCreateNew';
+import { PopUp } from '../../../commons/PopUp';
+import { Dropallback } from '../../../commons/DropAllBack';
+
 export const GardeViewAll = ({ shiftDate }: any) => {
 
-    const [isOpen, openCloseModal] = React.useState(false);
+    // global
+    const actualDate = new Date();
 
     // get shifts State
-    const shifts = useSelector((state:any)=>state.garde.shifts) || [];
+    const shifts = useSelector((state: any) => state.garde.shifts) || [];
 
+    // shifts data
+    const dataform = useSelector((state: any) => state.garde.shiftsTable) || undefined;
+
+    // selected month
+    const [month, setMonth] = React.useState<string>(`${actualDate.getFullYear()}-0${actualDate.getMonth() + 1}`);
+    // modal controll
+    const [isOpen, openCloseModal] = React.useState(false);
+    const [isOpenUp, openCloseModaUp] = React.useState(false);
+    const [isOpenDel, openCloseModaDel] = React.useState(false);
+
+    // update table 
+    const updateTable = () =>{
+        setTimeout(()=>shiftDispatcher.getMonthShifts(month, 'Biochimie'), 1000);
+    }
     const Parameters = [
         {
-            title: "list de garde du mois 05-2020",
+            title: "list de garde du",
             headers: ["Nom", "Prenom", "unite", "Les Jours de Garde", "J/N", "E/S"],
             data: shifts
         }
     ]
 
-    React.useEffect(()=>{
-        if(shifts.length<=0) shiftDispatcher.fetchShifts()
-    },[shifts])
+    var Listdata = (
+        <tbody>
+            {dataform && <>{
+                dataform.days.map((gard: any) =>
+                    <Tr key={gard.date}>
+                        <Td>{gard.dayName}</Td>
+                        <Td>{gard.date}</Td>
+                        <Td>{gard.dayEmployer && <span>{gard.dayEmployer.firstName} {gard.dayEmployer.lastName}</span>}</Td>
+                        <Td>{gard.nightEmployer && <span>{gard.nightEmployer.firstName} {gard.nightEmployer.lastName}</span>}</Td>
+                        <Td>{dataform.departement}</Td>
+                        <Td>
+                            <button className="operation" onClick={() => {
+                                openCloseModaUp(!isOpenUp)
+                                // selectedGarde(gard.date)
+                            }}>Editer</button>
+                            <button className="operations" onClick={() => {
+                                openCloseModaDel(!isOpenDel)
+                            }}
+                            >Supprimer</button>
+                        </Td>
+                    </Tr>
+                )}</>}
+            {!dataform && <Tr><Td>Loading.....</Td></Tr>}
+        </tbody>
+    )
+
+    // change to another month
+    const switchToMonth = async (m: string) => {
+        await setMonth(m);
+        return shiftDispatcher.getMonthShifts(m, 'Biochimie');
+    }
+
+    // debug shifts data    
+    console.log(dataform)
+
+    // before anything check params
+    React.useEffect(() => {
+        if (shifts.length <= 0) shiftDispatcher.fetchShifts();
+        if(!dataform && shifts.length > 0) shiftDispatcher.getMonthShifts(month, 'Biochimie');
+    }, [shifts, dataform])
 
     return (
-        <div style={{width: "90%"}}>
-            {Parameters.map((parameter: any) => (
-                <div key={parameter.title}>
-                    <h1>{parameter.title}</h1>
-                    <a onClick={(e) => openCloseModal(!isOpen)}>Creer Nouveau List de Gardes</a>
-                    <hr />
-                    <button>biochimie</button>
-                    <button>bacteriologie</button>
-                    <button>Hemtologie</button>
-                    <a href={shift.getXlsFile()} download={'shifts.xls'}>export</a>
-                    <Table>
-                        <thead>
-                            <Tr >
-                                <Th>mois 6</Th>
-                                <Th>Jour</Th>
-                                <Th>Nuit</Th>
-                            </Tr>
-                        </thead>
-                        <tbody>
-                            {shifts.map((shift:any)=>
+        <React.Fragment>
+            {isOpenDel && <Dropallback />}
+            {isOpen && <Dropallback />}
+            {isOpenUp && <Dropallback></Dropallback>}
+            <div style={{ width: "90%" }}>
+
+                {/* PopUp For Creating new shift */}
+                {isOpen && <CreateNew close={() => openCloseModal(!isOpen)} 
+                    shiftDate={shiftDate} fetchNewData={shiftDispatcher.fetchShifts} 
+                    updateTable={updateTable}/>
+                }
+
+                {/* PopUp For Editing Garde selected */}
+                {isOpenUp && <ModifyExistingShift close={() => openCloseModal(!isOpen)} />}
+
+                {/* PopUp remove Garde selected */}
+                {isOpenDel && <PopUp title="Confirmation" canCancel canConfirm onCancel={() => openCloseModaDel(!isOpenDel)}><div>Voulus-vous vraiment supprimer ?</div> </PopUp>}
+
+                {/* shift list monitoring */}
+                {Parameters.map((parameter: any) => (
+                    <div key={parameter.title}>
+                        <h2>{parameter.title} <input type="month" min="2020-05" value={month} onChange={e => switchToMonth(e.target.value)} /></h2>
+                        <But onClick={(e) => openCloseModal(!isOpen)}>Creer Nouveau List de Gardes</But>
+                        <hr />
+                        <FiltrationContainer>
+                            <Filtration>
+                                <Button /* onClick={() => shiftDispatcher.fetchShifts()} */>biochimie</Button>
+                                <Button /*  onClick={() => searchByCretere("bacteriologie")} */>bacteriologie</Button>
+                                <Button /* onClick={() => searchByCretere("Hematologie")} */>Hemtologie</Button>
+                            </Filtration>
+
+                            <All>
+                                <a href={shiftDispatcher.getXlsFile()} download={`${month}.xls`}>Export</a>
+                            </All>
+                        </FiltrationContainer>
+
+                        <Table>
+                            <thead>
                                 <Tr>
-                                    <Td>1</Td>
-                                    <Td>{shift.employer.firstName} {shift.employer.lastName}</Td>
+                                    <Th></Th>
+                                    <Th>Date</Th>
+                                    <Th>Jour</Th>
+                                    <Th>Nuit</Th>
+                                    <Th>Unite</Th>
+                                    <Th>Operations</Th>
                                 </Tr>
-                            )}
-                        </tbody>
-                    </Table>
-
-                    <hr />
-
-                </div>
-            ))}
-            {isOpen && <CreateNew close={() => openCloseModal(!isOpen)} shiftDate={shiftDate} />}
-        </div>
+                            </thead>
+                            {Listdata}
+                        </Table>
+                        <hr />
+                    </div>
+                ))}
+            </div>
+        </React.Fragment>
     )
 }
+
+// modify shift
+const ModifyExistingShift: React.FC<any> = ({ close }) => (
+    <PopUp title="Modification de la garde" canCancel canConfirm onCancel={() => close()} >
+        <div className="form_wrapper">
+            <div className="form_container">
+                <div className="row clearfix">
+                    <div className="col_half" style={{ marginBottom: "10px", width: "100%" }}>
+                        <div className="select" style={{ width: "100%" }}>
+                            <select id="slct">
+                                <option value="L">Lundi</option>
+                                <option value="MA">Mardi</option>
+                                <option value="M">Mercredi</option>
+                                <option value="J">Jeudi</option>
+                                <option value="V">Vendredi</option>
+                                <option value="S">Samedi</option>
+                                <option value="D">Dimanche</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div className="row clearfix">
+                    <div className="col_half" style={{ marginBottom: "10px" }}>
+                        <div className="input_field">
+                            <input type="text" name="jour" />
+                        </div>
+                    </div>
+                    <div className="col_half">
+                        <div className="input_field">
+                            <input type="text" name="nuit" />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="row clearfix">
+                    <div className="col_half">
+                        <div className="input_field">
+                            <input type="date" name="date" />
+                        </div>
+                    </div>
+                    <div className="col_half" style={{ marginBottom: "10px" }}>
+                        <div className="select" style={{ width: "100%" }}>
+                            <select id="slct" >
+                                <option value="biochimie">biochimie</option>
+                                <option value="Hematologie">hematologie</option>
+                                <option value="bacteriologie">bacteriologie</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </PopUp>
+)
 
 const Modify = () =>
     <svg height="10pt"

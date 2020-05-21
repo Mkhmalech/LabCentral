@@ -2,9 +2,10 @@ import React, { Fragment, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './sidebar1Style.css'
 import { useSelector } from 'react-redux';
+import moment from 'moment';
 
 export const Sid = () => {
-  const date = new Date();
+  const date = moment().format('LLL');
   const username = useSelector((state:any)=>state.auth.login.username)
   return (
     <Fragment>

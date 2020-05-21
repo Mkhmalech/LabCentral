@@ -1,5 +1,7 @@
 import { store } from "../../../index";
 import { ShiftActions } from "../store/actions";
+import moment from "moment";
+import "moment/locale/fr";
 export class Shift {
   private accountName: string = "Centrale du CHU Hassan II";
 
@@ -19,37 +21,43 @@ export class Shift {
     store.dispatch({
       type: ShiftActions.LAB_LABO_SHIFT_ADD_NEW,
       payload: {
-        query: 
-            `mutation {
+        query: `mutation {
               assignShiftsToEmployer(
                 userId : "${shiftData.employerId}",
                 departementId : "${shiftData.departement._id}",
-                mounth : ${new Date(shiftData.start).getMonth()},
+                mounth : ${new Date(shiftData.start).getMonth() + 1},
                 year : ${new Date(shiftData.start).getFullYear()},
                 type : "${shiftData.type}",
                 days : [${days}],
                 accountName : "${this.accountName}")
             }`,
       },
-      path : 'labos/staff'
+      path: "labos/staff",
     });
   };
 
   // fetch all shifts
-  fetchShifts = () =>store.dispatch({
-      type : ShiftActions.LAB_LABO_SHIFT_FETCH_ALL,
-      payload : {
-        query:`query{fetchAllShifts(accountName:"${this.accountName}"){employer{firstName lastName} departement{name} days mounth year type}}`
+  fetchShifts = () =>
+    store.dispatch({
+      type: ShiftActions.LAB_LABO_SHIFT_FETCH_ALL,
+      payload: {
+        query: `query{fetchAllShifts(accountName:"${this.accountName}"){employer{firstName lastName} departement{name} days mounth year type}}`,
       },
-      path : 'labos/staff'
-  })
+      path: "labos/staff",
+    });
   // get file xls url
-  getXlsFile= ()=>{
-    const myBlob = new Blob([generateXLShift])
-    return window.URL.createObjectURL(myBlob);}
+  getXlsFile = () => {
+    const myBlob = new Blob([generateXLShift]);
+    return window.URL.createObjectURL(myBlob);
+  };
+  getMonthShifts = (month : string, departement : string) => store.dispatch({
+    type : ShiftActions.LAB_LABO_SHIFT_CLASSIFY_DATA,
+    departement : departement,
+    month : month
+  })
 }
 
-
+// Generate file actions
 const FooterXLShift = `<tr height=15 style='height:14.4pt'>
 <td height=19 colspan=6 style='height:14.4pt;mso-ignore:colspan'></td>
 </tr>
@@ -58,7 +66,7 @@ const FooterXLShift = `<tr height=15 style='height:14.4pt'>
 <td class=xl77>Chef de service</td>
 <td></td>
 <td colspan=2 class=xl90>Directeur de l’hopital</td>
-</tr>`
+</tr>`;
 const headerXLShift = `<head>
 <meta http-equiv=Content-Type content="text/html; charset=windows-1252">
 <meta name=ProgId content=Excel.Sheet>
@@ -323,8 +331,8 @@ font-weight:700;
 text-align:center;}
 
 </style>
-</head>`
-const tableHeaderXLShift =`<table border=0 cellpadding=0 cellspacing=0 width=585 style='border-collapse:
+</head>`;
+const tableHeaderXLShift = `<table border=0 cellpadding=0 cellspacing=0 width=585 style='border-collapse:
 collapse;table-layout:fixed;width:439pt'>
      <col width=41 style='mso-width-source:userset;mso-width-alt:1450;width:31pt'>
      <col width=64 style='width:48pt'>
@@ -405,42 +413,41 @@ collapse;table-layout:fixed;width:439pt'>
         <td class=xl69></td>
         <td class=xl69></td>
         <td class=xl72></td>
-     </tr>`
+     </tr>`;
 const bodyXLShifts = () => {
-  let body = ''
+  let body = "";
   for (let i = 0; i < 31; i++) {
-      body += `<tr height=20 style='height:15.0pt'>
+    body += `<tr height=20 style='height:15.0pt'>
       <td height=20 class=xl74 style='height:15.0pt'>L</td>
-      <td class=xl75>7/${i+1}/2019</td>
+      <td class=xl75>7/${i + 1}/2019</td>
       <td colspan=2 class=xl84 style='border-right:.5pt solid black'>A,B;C</td>
       <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:none'>G;H;I</td>
-   </tr>`    
+   </tr>`;
   }
   return body;
-}
+};
 const generateXLShift = `
 <html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office"
    xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40">
 
-${headerXLShift}
+   ${headerXLShift}
 
-<body link=blue vlink=purple>
-      ${tableHeaderXLShift}
-      <!-- table header -->
-      <tr height=22 style='height:16.2pt'>
-         <td colspan=2 height=22 class=xl78 style='border-right:.5pt solid black;height:16.2pt'>DATE</td>
-         <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:none'>JOUR</td>
-         <td colspan=2 class=xl82 style='border-right:.5pt solid black;border-left:none'>NUIT</td>
-      </tr>
-      <!-- start table body boucler -->
-      ${bodyXLShifts()}
-      ${FooterXLShift}
-   </table>
+   <body link=blue vlink=purple>
+         ${tableHeaderXLShift}
+         <!-- table header -->
+         <tr height=22 style='height:16.2pt'>
+            <td colspan=2 height=22 class=xl78 style='border-right:.5pt solid black;height:16.2pt'>DATE</td>
+            <td colspan=2 class=xl80 style='border-right:.5pt solid black;border-left:none'>JOUR</td>
+            <td colspan=2 class=xl82 style='border-right:.5pt solid black;border-left:none'>NUIT</td>
+         </tr>
+         <!-- start table body boucler -->
+         ${bodyXLShifts()}
+         ${FooterXLShift}
+      </table>
 
-</body>
+   </body>
 
 </html>
-`
-
+`;
 
 export default new Shift();
