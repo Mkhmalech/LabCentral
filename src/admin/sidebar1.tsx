@@ -5,8 +5,11 @@ import { useSelector } from 'react-redux';
 import moment from 'moment';
 
 export const Sid = () => {
-  const date = moment().format('LLL');
-  const username = useSelector((state:any)=>state.auth.login.username)
+  const [date, setDate] = React.useState(moment().format('LLL'));
+  const username = useSelector((state:any)=>state.auth.login.username);
+
+  setInterval(()=>setDate(moment().format('LLL')), 1000);
+
   return (
     <Fragment>
       <div className="header">
