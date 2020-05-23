@@ -352,7 +352,7 @@ collapse;table-layout:fixed;width:439pt'>
         <td class=xl65 width=120 style='width:90pt'></td>
         <td colspan=2 height=21 width=240 style='height:15.6pt;width:180pt' align=left valign=top>
 
-           <span style='mso-ignore:vglayout;position:absolute;z-index:1;margin-left:0px;margin-top:1px;width:200px;height:102px'><img width=200 height=80 src=image004.gif v:shapes="Picture_x0020_1"></span>
+           <span style='mso-ignore:vglayout;position:absolute;z-index:1;margin-left:0px;margin-top:1px;width:200px;height:102px'><img width=200 height=80 src='http://localhost:3000/labcentralchu.png' v:shapes="Picture_x0020_1"></span>
            <span style='mso-ignore:vglayout2'>
               <table cellpadding=0 cellspacing=0>
                  <tr><td colspan=2 height=21 class=xl66 width=240 style='height:15.6pt;width:180pt'></td></tr>

@@ -25,9 +25,16 @@ export const GardeViewAll = ({ shiftDate }: any) => {
     const [isOpenUp, openCloseModaUp] = React.useState(false);
     const [isOpenDel, openCloseModaDel] = React.useState(false);
 
+    // filter by
+    const [departement, setDepartement] = React.useState<string>('Biochimie')
+    const filterByDeaprtement =(dep : string)=>{
+        setDepartement(dep);
+        shiftDispatcher.getMonthShifts(month, dep);
+    }
+
     // update table 
     const updateTable = () =>{
-        setTimeout(()=>shiftDispatcher.getMonthShifts(month, 'Biochimie'), 1000);
+        setTimeout(()=>shiftDispatcher.getMonthShifts(month, departement), 1000);
     }
     // paramters
     const Parameters = [
@@ -68,7 +75,7 @@ export const GardeViewAll = ({ shiftDate }: any) => {
     // change to another month
     const switchToMonth = async (m: string) => {
         await setMonth(m);
-        return shiftDispatcher.getMonthShifts(m, 'Biochimie');
+        return shiftDispatcher.getMonthShifts(m, departement);
     }
 
     // debug shifts data    
@@ -77,7 +84,7 @@ export const GardeViewAll = ({ shiftDate }: any) => {
     // before anything check params
     React.useEffect(() => {
         if (shifts.length <= 0) shiftDispatcher.fetchShifts();
-        if(!dataform && shifts.length > 0) shiftDispatcher.getMonthShifts(month, 'Biochimie');
+        if(!dataform && shifts.length > 0) shiftDispatcher.getMonthShifts(month, departement);
     }, [shifts, dataform])
 
     return (
@@ -107,9 +114,9 @@ export const GardeViewAll = ({ shiftDate }: any) => {
                         <hr />
                         <FiltrationContainer>
                             <Filtration>
-                                <Button /* onClick={() => shiftDispatcher.fetchShifts()} */>biochimie</Button>
-                                <Button /*  onClick={() => searchByCretere("bacteriologie")} */>bacteriologie</Button>
-                                <Button /* onClick={() => searchByCretere("Hematologie")} */>Hemtologie</Button>
+                                <Button onClick={() => filterByDeaprtement('Biochimie')}>biochimie</Button>
+                                <Button  onClick={() => filterByDeaprtement('Bacteriologie')}>bacteriologie</Button>
+                                <Button onClick={() => filterByDeaprtement("Hematologie")}>Hemtologie</Button>
                             </Filtration>
 
                             <All>
