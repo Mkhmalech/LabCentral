@@ -14,7 +14,10 @@ export async function callApi(method: string, url: string, path: string, data?: 
     return res.json()
   }
 
-export function* tryFetching(path: string, payload : string, actionWhenFailed : string, actionWhenSuccesses : string){
+export function* tryFetching(path: string, payload : string, actionWhenFailed : string, actionWhenSuccesses : string, loadingAction? : string){
+
+   if(loadingAction) yield put({type : loadingAction})
+
     try{
         const res = yield call(callApi, 'post', api, path, payload );
 

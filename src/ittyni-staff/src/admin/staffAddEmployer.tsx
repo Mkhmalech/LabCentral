@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 
 export const StaffAddEmployer: React.FC<any> = ({ username }) => {
 
-  // create fileds hook
-  
+  // get server respond 
+  const hasCreated = useSelector((state: any) => state.staff.hasCreated) || undefined;
 
   // hide & show departement
   const [hidden, setHidden] = React.useState(false);
@@ -28,6 +28,7 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
   const addNewDepartement = () => {
     staff.addNewDepartement(departementName)
   }
+
   // Add new Employer
   const createEmployer = () => {
     const employer = {
@@ -37,10 +38,10 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
       ppr : Number(PPR),
       departementName : unite,
     }
-    console.log(employer)
-    staff.addNewEmployers(employer)
+    staff.addNewEmployers(employer);
+    // wait one second and fetch new list
+    setTimeout(()=>staff.listStaff(), 1000);
   }
-
 
   // before anything get departements from
   // api
@@ -93,13 +94,14 @@ export const StaffAddEmployer: React.FC<any> = ({ username }) => {
             </div>
             {hidden && <AddPersonalInput label="Nouvelle Unite" onChange={(e: any) => setDepartementName(e.target.value)}/>}
           </div>
-          <input className="button" type="submit" value="Sumbit" onClick={(e)=>createEmployer()}/>
+          <input className="button" type="submit" 
+            value={typeof hasCreated === "undefined" ? "Envoyer": (hasCreated ? "Envoyer Autre" : "Loading...")} 
+            onClick={(e)=>createEmployer()}/>
         </div>
       </div>
     </React.Fragment>
   )
 }
-
 
 interface FormFieldSelectProps {
   listToChose: any[]

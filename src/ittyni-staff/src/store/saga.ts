@@ -14,7 +14,8 @@ function* StaffAddNew({path, payload} : AnyAction){
         path,
         payload,
         StaffActions.ADD_EMPLOYER_ERROR,
-        StaffActions.ADD_EMPLOYER_SUCCESS
+        StaffActions.ADD_EMPLOYER_SUCCESS,
+        StaffActions.ADD_EMPLOYER_WORKING
     )
 }
 /**

@@ -8,5 +8,6 @@ interface Employer extends Person{
 
 interface LabStaffState {
   staff ?: [Employer];
+  hasCreated?: boolean
 }
 // daba ghadi namchiw el partie s3iba fin initializiw a state dyalna
