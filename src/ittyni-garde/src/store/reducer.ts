@@ -5,11 +5,11 @@ import moment from "moment";
 const initState: LaboShiftState = {};
 
 export const shiftReducer: Reducer = (state = initState, action: AnyAction) => {
+  const {type, payload } = action;
   switch (action.type) {
     case ShiftActions.LAB_LABO_SHIFT_FETCH_ALL_SUCCESS:
       return { ...state, shifts: action.payload.fetchAllShifts };
     case ShiftActions.LAB_LABO_SHIFT_CLASSIFY_DATA:
-      console.log(state);
       return {
         ...state,
         shiftsTable: getMonthShift(
@@ -18,6 +18,8 @@ export const shiftReducer: Reducer = (state = initState, action: AnyAction) => {
           state.shifts
         ),
       };
+    case ShiftActions.LAB_LABO_SHIFT_DELETE_SUCCESS : 
+      return{ ...state, isShiftDeleted : payload.employerDelete}
     default:
       return { ...state };
   }
@@ -58,8 +60,8 @@ const getMonthShift = (
           .toUpperCase(),
         day: i + 1,
         date: `${month}-${i + 1}`,
-        dayEmployer: empD ? empD.employer : "",
-        nightEmployer: empN ? empN.employer : "",
+        dayShift : { employer: empD ? empD.employer : "", id : empD ? empD.id : "" },
+        nightShift : { employer: empN ? empN.employer : "", id : empN ? empN.id : ""}
       });
     } else {
         shift.days.push({

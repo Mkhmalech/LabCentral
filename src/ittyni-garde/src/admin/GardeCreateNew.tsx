@@ -7,7 +7,7 @@ import './gardeStyle.css';
 
 const shiftClass = new Shift();
 
-export const CreateNew: React.FC<any> = ({ close, fetchNewData, updateTable }) => {
+export const CreateNew: React.FC<any> = ({ close, updateTable }) => {
 
     /**
      * user search a @constant{name : fetched from server} 
@@ -44,8 +44,7 @@ export const CreateNew: React.FC<any> = ({ close, fetchNewData, updateTable }) =
             end: shifEnd,
         });
         close();
-        setTimeout(()=>fetchNewData(), 1000);
-        setTimeout(()=>updateTable(), 1000);
+        updateTable();
     }
     React.useEffect(() => {
         if (staffState.length <= 0) staff.listStaff();

@@ -54,6 +54,17 @@ class Staff {
       },
       path: "labos",
     });
+  
+  /**
+   * delete employer
+   */
+  deleteEmployer = (empId : string) => store.dispatch({
+    type : StaffActions.DELETE_EXISTING_EMPLOYERS,
+    payload: {
+      query: `mutation{employerDelete(id : "${empId}")}`,
+    },
+    path: "labos/staff",
+  })
 }
 
 export const staff = new Staff();

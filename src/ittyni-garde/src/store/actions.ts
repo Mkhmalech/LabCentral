@@ -8,6 +8,10 @@ export enum ShiftActions {
     LAB_LABO_SHIFT_ADD_NEW = "@@shift/ADD_NEW",
     LAB_LABO_SHIFT_ADD_NEW_ERROR = "@@shift/ADD_NEW_ERROR",
     LAB_LABO_SHIFT_ADD_NEW_SUCCESS = "@@shift/ADD_NEW_SUCCESS",
+    // assign new shift
+    LAB_LABO_SHIFT_DELETE = "@@shift/DELETE",
+    LAB_LABO_SHIFT_DELETE_ERROR = "@@shift/DELETE_ERROR",
+    LAB_LABO_SHIFT_DELETE_SUCCESS = "@@shift/DELETE_SUCCESS",
 
     // orgranise data to monitoring in tables
     LAB_LABO_SHIFT_CLASSIFY_DATA = "@@shift/CLASSIFY_DATA",

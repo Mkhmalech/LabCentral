@@ -34,7 +34,8 @@ export const GardeViewAll = ({ shiftDate }: any) => {
 
     // update table 
     const updateTable = () =>{
-        setTimeout(()=>shiftDispatcher.getMonthShifts(month, departement), 1000);
+        setTimeout(()=>shiftDispatcher.fetchShifts(), 1000);
+        setTimeout(()=>shiftDispatcher.getMonthShifts(month, departement), 1500);
     }
     // paramters
     const Parameters = [
@@ -53,18 +54,22 @@ export const GardeViewAll = ({ shiftDate }: any) => {
                     <Tr key={gard.date}>
                         <Td>{gard.dayName}</Td>
                         <Td>{gard.date}</Td>
-                        <Td>{gard.dayEmployer && <span>{gard.dayEmployer.firstName} {gard.dayEmployer.lastName}</span>}</Td>
-                        <Td>{gard.nightEmployer && <span>{gard.nightEmployer.firstName} {gard.nightEmployer.lastName}</span>}</Td>
+                        <Td>{gard.dayShift && gard.dayShift.employer && <span>{gard.dayShift.employer.firstName} {gard.dayShift.employer.lastName}</span>}</Td>
+                        <Td>{gard.nightShift && gard.nightShift.employer && <span>{gard.nightShift.employer.firstName} {gard.nightShift.employer.lastName}</span>}</Td>
                         <Td>{dataform.departement}</Td>
                         <Td>
                             <button className="operation" onClick={() => {
-                                openCloseModaUp(!isOpenUp)
+                                shiftDispatcher.deleteShift(gard.dayShift.id);
+                                updateTable();
+                                // openCloseModaUp(!isOpenUp)
                                 // selectedGarde(gard.date)
-                            }}>Editer</button>
+                            }}>X Jour</button>
                             <button className="operations" onClick={() => {
-                                openCloseModaDel(!isOpenDel)
+                                shiftDispatcher.deleteShift(gard.nightShift.id);
+                                updateTable();
+                                // openCloseModaDel(!isOpenDel)
                             }}
-                            >Supprimer</button>
+                            >X Nuit</button>
                         </Td>
                     </Tr>
                 )}</>}
@@ -79,7 +84,7 @@ export const GardeViewAll = ({ shiftDate }: any) => {
     }
 
     // debug shifts data    
-    console.log(dataform)
+    // console.log(dataform)
 
     // before anything check params
     React.useEffect(() => {
@@ -95,10 +100,7 @@ export const GardeViewAll = ({ shiftDate }: any) => {
             <div style={{ width: "90%" }}>
 
                 {/* PopUp For Creating new shift */}
-                {isOpen && <CreateNew close={() => openCloseModal(!isOpen)} 
-                    shiftDate={shiftDate} fetchNewData={shiftDispatcher.fetchShifts} 
-                    updateTable={updateTable}/>
-                }
+                {isOpen && <CreateNew close={() => openCloseModal(!isOpen)} shiftDate={shiftDate} updateTable={updateTable}/> }
 
                 {/* PopUp For Editing Garde selected */}
                 {isOpenUp && <ModifyExistingShift close={() => openCloseModal(!isOpen)} />}

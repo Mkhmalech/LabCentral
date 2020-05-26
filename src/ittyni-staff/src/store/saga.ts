@@ -3,9 +3,6 @@ import { AnyAction } from 'redux';
 import { tryFetching } from '../../../Store/config'
 import { StaffActions } from './actions';
 
-
-
-
 /**
  * labo fetch details
  */
@@ -29,12 +26,24 @@ function* StaffFetchAll({path, payload} : AnyAction){
         StaffActions.LIST_ALL_EMPLOYERS_SUCCESS
     )
 }
+/**
+ * labo staff delete employer
+ */
+function* StaffDeleteEmployer({path, payload} : AnyAction){
+    yield tryFetching(
+        path,
+        payload,
+        StaffActions.DELETE_EXISTING_EMPLOYERS_ERROR,
+        StaffActions.DELETE_EXISTING_EMPLOYERS_SUCCESS
+    )
+}
 //watcher func dispatcher
 function* watchLabLaboStaff(){
 
     // fetch tests form server 
     yield takeEvery(StaffActions.ADD_EMPLOYER, StaffAddNew)
     yield takeEvery(StaffActions.LIST_ALL_EMPLOYERS, StaffFetchAll)
+    yield takeEvery(StaffActions.DELETE_EXISTING_EMPLOYERS, StaffDeleteEmployer)
 }
 
 export function* LabLaboStaffSaga(){

@@ -42,10 +42,21 @@ export class Shift {
     store.dispatch({
       type: ShiftActions.LAB_LABO_SHIFT_FETCH_ALL,
       payload: {
-        query: `query{fetchAllShifts(accountName:"${this.accountName}"){employer{firstName lastName} departement{name} days mounth year type}}`,
+        query: `query{fetchAllShifts(accountName:"${this.accountName}"){id employer{firstName lastName} departement{name} days mounth year type}}`,
       },
       path: "labos/staff",
     });
+  
+  // delete shift
+  deleteShift = (id : string) =>
+  store.dispatch({
+    type: ShiftActions.LAB_LABO_SHIFT_DELETE,
+    payload: {
+      query: `mutation{deleteShift(id : "${id}")}`,
+    },
+    path: "labos/staff",
+  });
+
   // get file xls url
   getXlsFile = (header: any) => {
     const myBlob = new Blob([generateXLShift(header)]);
@@ -430,8 +441,8 @@ const bodyXLShifts = (dataform : any) => {
       body += `<tr height=20 style='height:15.0pt'>
         <td height=20 class=${day.dayName == 'SA' || day.dayName == 'DI' ? 'xl91':'xl74'} style='height:15.0pt'>${day.dayName}</td>
         <td class=xl75>${moment(day.date,'YYYY-MM-DD').format('LL')}</td>
-        <td colspan=2 class=xl84 style='border-right:.5pt solid black'>${day.dayEmployer.firstName} ${day.dayEmployer.lastName}</td>
-        <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:none'>${day.nightEmployer.firstName} ${day.nightEmployer.lastName}</td>
+        <td colspan=2 class=xl84 style='border-right:.5pt solid black'>${day.dayShift ? day.dayShift.employer.firstName : ""} ${day.dayShift ? day.dayShift.employer.lastName : ""}</td>
+        <td colspan=2 class=xl86 style='border-right:.5pt solid black;border-left:none'>${day.nightShift ? day.nightShift.employer.firstName : ""} ${day.nightShift ? day.nightShift.employer.lastName : ""}</td>
      </tr>`;
     })
   } else {

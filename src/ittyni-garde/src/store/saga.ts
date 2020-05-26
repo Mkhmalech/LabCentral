@@ -25,12 +25,25 @@ function* shiftFetchAll({path, payload} : AnyAction){
         ShiftActions.LAB_LABO_SHIFT_FETCH_ALL_SUCCESS
     )
 }
+
+/**
+ * labo fetch details
+ */
+function* shiftDeleteExist({path, payload} : AnyAction){
+    yield tryFetching(
+        path,
+        payload,
+        ShiftActions.LAB_LABO_SHIFT_DELETE_ERROR,
+        ShiftActions.LAB_LABO_SHIFT_DELETE_SUCCESS
+    )
+}
 //watcher func dispatcher
 function* watchLabLaboShift(){
 
     // fetch tests form server 
     yield takeEvery(ShiftActions.LAB_LABO_SHIFT_ADD_NEW, shiftAddNew)
     yield takeEvery(ShiftActions.LAB_LABO_SHIFT_FETCH_ALL, shiftFetchAll)
+    yield takeEvery(ShiftActions.LAB_LABO_SHIFT_DELETE, shiftDeleteExist)
 }
 
 export function* LabLaboShiftSaga(){
